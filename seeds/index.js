@@ -5,7 +5,7 @@ const sequelize = require('../config/connection.js');
 
 const seedBlog = async () =>{
 
-    await sequelize.sync({force:true});
+    await sequelize.sync({force:false});
     console.log('DataBase Synced');
 
     // await seedUsers();
