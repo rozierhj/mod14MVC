@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const postButton = document.getElementById('make-post');
 const savePostButton = document.getElementById('save-post');
 const deletePost = document.getElementsByClassName('delete-post');
+const editPost = document.getElementsByClassName('edit-post');
 
 postButton.addEventListener('click', () => {
 
@@ -79,3 +80,23 @@ Array.from(deletePost).forEach(button => {
 
     });
 });
+
+Array.from(editPost).forEach(button => {
+    button.addEventListener('click',(event)=>{
+
+
+        const buttonClicked = event.target;
+
+        const buttonClick = document.querySelector(`#${buttonClicked.id}`);
+        const parentPost = buttonClick.closest('.blog-post');
+
+        const blogPost = parentPost.querySelector('.card-text').textContent;
+        const postTitle = parentPost.querySelector('.card-title').textContent;
+        const theModal = new bootstrap.Modal(document.getElementById('postModal'));
+        document.querySelector('#postModal input[type="text"]').value = postTitle;
+        document.querySelector('#postModal textarea').value = blogPost;
+        theModal.show();
+
+    });
+});
+

@@ -34,7 +34,6 @@
 </div>
 
 <div>
-    <h2>a Post</h2>
     {{#each posts }}
        
     <div id="{{id}}" class="card blog-post">
@@ -43,13 +42,14 @@
         <h5 class="card-title">{{post_title}}</h5>
         <p class="card-text">{{blog_post}}</p>
         <button id="delete-{{id}}" class="btn btn-primary delete-post">Delete</button>
-        {{!-- <a href="#" class="btn btn-primary">Delete</a> --}}
+        <button id="edit-{{id}}" class="btn btn-primary edit-post">Edit</button>
     </div>
 </div>
     {{/each}}
 </div>
 
 </main>
+
 <footer>
     <button id="make-post" type="button" class="btn btn-primary btn-lg">New Post</button>
 </footer>
