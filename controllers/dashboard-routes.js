@@ -6,7 +6,7 @@ router.get('/',async (req, res) => {
     try{
 
         const allPosts = await Post.findAll({
-            attributes:['blog_post','post_title'],
+            attributes:['id','blog_post','post_title'],
         });
        // console.log(allPosts);
         const posts = allPosts.map(post => post.get({plain: true}));

@@ -50,26 +50,32 @@ savePostButton.addEventListener('click',()=>{
 });
 
 Array.from(deletePost).forEach(button => {
-    button.addEventListener('click',()=>{
+    button.addEventListener('click',(event)=>{
 
-        
+        //const buttonClicked = document.querySelector('.delete-post');
+        //const postCard = buttonClicked.closest('.blog-post');
+        const buttonClicked = event.target;
+        //console.log(postCard.id);
+        //alert(buttonClicked.id);
 
-        // fetch('/api/post/delete/2', {
-        //     method: 'DELETE',
-        //     headers: {
-        //     'Content-Type': 'application/json',
-        //     },
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        // console.log('Delete successful:', data);
-        // window.location.href = '/dashboard';
-        // })
-        // .catch(error => {
-        // console.error('Error:', error);
-        // });
+        const buttonClick = document.querySelector(`#${buttonClicked.id}`);
+        const parentPost = buttonClick.closest('.blog-post');
+       // alert(parentPost.id);
 
-
+        fetch(`/api/post/delete/${parentPost.id}`, {
+            method: 'DELETE',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+        console.log('Delete successful:', data);
+        window.location.href = '/dashboard';
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
 
     });
 });

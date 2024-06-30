@@ -37,12 +37,12 @@
     <h2>a Post</h2>
     {{#each posts }}
        
-    <div class="card blog-post">
+    <div id="{{id}}" class="card blog-post">
         <h5 class="card-header">Featured</h5>
         <div class="card-body">
         <h5 class="card-title">{{post_title}}</h5>
         <p class="card-text">{{blog_post}}</p>
-        <button class="btn btn-primary delete-post">Delete</button>
+        <button id="delete-{{id}}" class="btn btn-primary delete-post">Delete</button>
         {{!-- <a href="#" class="btn btn-primary">Delete</a> --}}
     </div>
 </div>
