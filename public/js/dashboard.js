@@ -1,3 +1,5 @@
+// const { response } = require("express");
+
 const postButton = document.getElementById('make-post');
 const savePostButton = document.getElementById('save-post');
 
@@ -13,8 +15,27 @@ savePostButton.addEventListener('click',()=>{
     const modalToDelete = document.getElementById('postModal');
     const blogText = document.getElementById('blog-text');
     const blogTitle = document.getElementById('blog-title');
-    console.log(blogText.value);
-    console.log(blogTitle.value);
+
+    fetch('/api/addPost',{
+        method: 'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            blog_post: `${blogText.value}`,
+            post_title: `${blogTitle.value}`,
+        })
+    })
+    .then(response=>response.json())
+    .then(data =>{
+        console.log('success',data)
+    })
+    .catch((error)=>{
+        console.error('error:',error);
+    });
+
+    // console.log(blogText.value);
+    // console.log(blogTitle.value);
 
 
     const openModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));

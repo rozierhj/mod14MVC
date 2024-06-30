@@ -13,15 +13,15 @@ Post.init(
         },
         blog_post:{
             type: DataTypes.TEXT,
-            allowNull: false,
+          //  allowNull: false,
         },
         post_title:{
             type: DataTypes.STRING,
-            allowNull: false,
+           // allowNull: false,
         },
         post_date:{
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         // user_name: {
         //     type: DataTypes.STRING,
