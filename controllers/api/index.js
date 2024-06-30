@@ -2,14 +2,14 @@ const router = require('express').Router();
 
 const userRoutes = require('./user-routes.js');
 const loginModal = require('./login-modal.js');
-const addPost = require('./add-post.js');
+const posts = require('./posts.js');
 
 // alert('api routes');
 
 
 router.use('/loginModal', loginModal);
 router.use('/users', userRoutes);
-router.use('/addPost',addPost);
+router.use('/post',posts);
 
 
 

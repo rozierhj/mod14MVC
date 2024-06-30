@@ -7,10 +7,7 @@ loginButton.addEventListener('click', () => {
 
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const theModal = new bootstrap.Modal(document.getElementById('myModal'), {});
-//     theModal.show();
-// });
+
 
 // document.addEventListener('DOMContentLoaded', function () {
 //     var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
