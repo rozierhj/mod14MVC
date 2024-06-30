@@ -16,13 +16,16 @@ dashboardButton.addEventListener('click', () => {
     // alert('you are in login.js');
      window.location.href = '/home';
  });
-
  logoutButton.addEventListener('click', () => {
     // alert('you are in login.js');
      window.location.href = '/';
  });
 
- loginButton.addEventListener('click', () => {
-    // alert('you are in login.js');
-     window.location.href = '/login';
- });
+ if(loginButton !== null){
+
+    loginButton.addEventListener('click', () => {
+        // alert('you are in login.js');
+         window.location.href = '/login';
+     });
+
+ }

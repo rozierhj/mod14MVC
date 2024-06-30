@@ -1,1 +1,30 @@
 {{> primary-header}}
+
+<main>
+
+<div id="postModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input id="blog-title" class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+        <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Example text area</label>
+        <textarea class="form-control" id="blog-text"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button id="save-post" type="button" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <button id="make-post" type="button" class="btn btn-primary btn-lg">New Post</button>
+</main>
+
+<script src="/js/dashboard.js"></script>
