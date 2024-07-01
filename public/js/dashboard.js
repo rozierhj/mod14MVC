@@ -7,6 +7,7 @@ const postButton = document.getElementById('make-post');
 const savePostButton = document.getElementById('save-post');
 const deletePost = document.getElementsByClassName('delete-post');
 const editPost = document.getElementsByClassName('edit-post');
+const postHeader = document.getElementsByClassName('card-header');
 
 postButton.addEventListener('click', () => {
 
@@ -99,4 +100,28 @@ Array.from(editPost).forEach(button => {
 
     });
 });
+
+Array.from(postHeader).forEach(button => {
+    button.addEventListener('click',(event)=>{
+
+
+
+        const headerClicked = event.target;
+
+        alert(` ${headerClicked.id} was clicked`);
+
+        const headerClick = document.querySelector(`#${headerClicked.id}`);
+        const parentPost = buttonClick.closest('.blog-post');
+
+        // const blogPost = parentPost.querySelector('.card-text').textContent;
+        // const postTitle = parentPost.querySelector('.card-title').textContent;
+        // const theModal = new bootstrap.Modal(document.getElementById('postModal'));
+        // document.querySelector('#postModal input[type="text"]').value = postTitle;
+        // document.querySelector('#postModal textarea').value = blogPost;
+        // theModal.show();
+
+    });
+});
+
+
 
