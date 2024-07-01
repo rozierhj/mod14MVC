@@ -8,6 +8,7 @@ const savePostButton = document.getElementById('save-post');
 const deletePost = document.getElementsByClassName('delete-post');
 const editPost = document.getElementsByClassName('edit-post');
 const postHeader = document.getElementsByClassName('card-header');
+const saveCommentButton = document.getElementById('save-comment');
 
 postButton.addEventListener('click', () => {
 
@@ -19,28 +20,27 @@ postButton.addEventListener('click', () => {
 savePostButton.addEventListener('click',()=>{
 
     const modalToDelete = document.getElementById('postModal');
-    const blogText = document.getElementById('blog-text');
-    const blogTitle = document.getElementById('blog-title');
 
-    fetch('/api/post/add',{
-        method: 'POST',
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-            blog_post: `${blogText.value}`,
-            post_title: `${blogTitle.value}`,
-        })
-    })
-    .then(response=>response.json())
-    .then(data =>{
-        console.log('success',data)
-    })
-    .catch((error)=>{
-        console.error('error:',error);
-    });
+    addPost();
 
     const openModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));
+
+    openModal.hide();
+    openModal.dispose();
+
+    modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+    modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+    window.location.href = '/dashboard';
+
+});
+
+saveCommentButton.addEventListener('click',()=>{
+
+    const modalToDelete = document.getElementById('commentModal');
+
+    addComment(postID);
+
+    const openModal = bootstrap.Modal.getInstance(document.getElementById('commentModal'));
 
     openModal.hide();
     openModal.dispose();
@@ -54,30 +54,11 @@ savePostButton.addEventListener('click',()=>{
 Array.from(deletePost).forEach(button => {
     button.addEventListener('click',(event)=>{
 
-        //const buttonClicked = document.querySelector('.delete-post');
-        //const postCard = buttonClicked.closest('.blog-post');
         const buttonClicked = event.target;
-        //console.log(postCard.id);
-        //alert(buttonClicked.id);
 
         const buttonClick = document.querySelector(`#${buttonClicked.id}`);
         const parentPost = buttonClick.closest('.blog-post');
-       // alert(parentPost.id);
-
-        fetch(`/api/post/delete/${parentPost.id}`, {
-            method: 'DELETE',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-        })
-        .then(response => response.json())
-        .then(data => {
-        console.log('Delete successful:', data);
-        window.location.href = '/dashboard';
-        })
-        .catch(error => {
-        console.error('Error:', error);
-        });
+        deleteThePost(parentPost.id);
 
     });
 });
@@ -105,21 +86,22 @@ Array.from(postHeader).forEach(button => {
     button.addEventListener('click',(event)=>{
 
 
-
+        
         const headerClicked = event.target;
-
-        alert(` ${headerClicked.id} was clicked`);
-
+        
         const headerClick = document.querySelector(`#${headerClicked.id}`);
-        const parentPost = buttonClick.closest('.blog-post');
-
+        const parentPost = headerClick.closest('.blog-post');
+        // alert(`${parentPost.id}`);
+        
         // const blogPost = parentPost.querySelector('.card-text').textContent;
         // const postTitle = parentPost.querySelector('.card-title').textContent;
         // const theModal = new bootstrap.Modal(document.getElementById('postModal'));
         // document.querySelector('#postModal input[type="text"]').value = postTitle;
         // document.querySelector('#postModal textarea').value = blogPost;
         // theModal.show();
-
+        
+        const theModal = new bootstrap.Modal(document.getElementById('commentModal'), {});
+        theModal.show();
     });
 });
 
