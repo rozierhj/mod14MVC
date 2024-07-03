@@ -66,7 +66,7 @@ Array.from(editPost).forEach(button => {
         
         getPostToEdit(postID);
         
-        
+        window.location.href = '/dashboard';
 
     });
 });
