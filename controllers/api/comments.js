@@ -5,14 +5,14 @@ router.post('/add', async(req, res)=>{
 
     try{
 
-        const newPost = await Comment.create({
+        const newComment = await Comment.create({
 
             post_comment: req.body.post_comment,
             post_id: req.body.post_id,
 
         });
        // console.log('added post',newPost);
-        res.status(200).json(newPost);
+        res.status(200).json(newComment);
 
     }catch(err){
         res.status(500).json(err);

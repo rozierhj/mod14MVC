@@ -71,58 +71,29 @@ Array.from(editPost).forEach(button => {
 });
 
 Array.from(postHeader).forEach( button => {
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', (event)=>{
 
-        const theModal = new bootstrap.Modal(document.getElementById('commentModal'), {});
+        // const buttonClicked = event.target;
+
+        // const buttonClick = document.querySelector(`#${buttonClicked.id}`);
+        // const parentPost = buttonClick.closest('.blog-post');
+
+        // const postComment = parentPost.querySelector('.card-text').textContent;
+        // // const postTitle = parentPost.querySelector('.card-title').textContent;
+        // const postID = parentPost.id;
+        // const theModal = new bootstrap.Modal(document.getElementById('commentModal'));
+        // theModal.show();
+        
+        // addComment(postID);
+
+        const theModal = new bootstrap.Modal(document.getElementById('commentModalGroup'), {});
         theModal.show();
         
     });
 });
 
-function resetEvents(){
-
-    Array.from(postHeader).forEach( async button => {
-        button.addEventListener('click', async (event)=>{
-    
-            try{
-    
-                await setWindow();
-    
-                await setComment(event);
-    
-                await setSave();
-    
-    
-            }catch(err){
-                console.error(err);
-            }
-            
-    
-        });
-    });
 
 
-}
-function getPostToEdit(postID){
-
-    saveEditButton.addEventListener('click', ()=>{
-
-        const modalToDelete = document.getElementById('editModal');
-    
-        editPostF(postID);
-    
-        const openModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-    
-        openModal.hide();
-        openModal.dispose();
-    
-        modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
-        modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-        window.location.href = '/dashboard';
-    
-    });
-    
-}
 
 
 

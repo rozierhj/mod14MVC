@@ -13,9 +13,19 @@ footer{
     cursor: pointer;
 }
 
-#commentModal2 .blog-post{
+#commentModalGroup .blog-post{
 
-    margin: 0;
+    margin: 5px;
     /* padding: 0 !important; */
 
 }
+
+/* #commentModalGroup{
+    display: flex;
+    align-items: center;
+   justify-content: center;
+}
+
+#commentModalGroup .modal-content{
+    width: 800px;
+} */
