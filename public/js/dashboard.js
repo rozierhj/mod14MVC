@@ -71,16 +71,12 @@ Array.from(editPost).forEach(button => {
     });
 });
 
-Array.from(postHeader).forEach( async button => {
-    button.addEventListener('click', async (event)=>{
+Array.from(postHeader).forEach( button => {
+    button.addEventListener('click', ()=>{
 
-        try{
-
-        }catch(err){
-            console.error(err);
-        }
+        const theModal = new bootstrap.Modal(document.getElementById('commentModal'), {});
+        theModal.show();
         
-
     });
 });
 
