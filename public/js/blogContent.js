@@ -44,6 +44,7 @@ function deleteThePost(id){
 
 function addComment(postID){
 
+    
     const commentText = document.getElementById('comment-text');
 
     fetch('/api/comment/add',{
@@ -64,5 +65,33 @@ function addComment(postID){
         console.error('error:',error);
     });
 
+
+}
+
+function editPostF(postID){
+
+    const blogText = document.getElementById('edit-blog-text');
+    const blogTitle = document.getElementById('edit-blog-title');
+    
+    console.log(`/api/post/edit/${postID}`);
+
+    fetch(`/api/post/edit/${postID}`,{
+        method: 'PUT',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            blog_post: `${blogText.value}`,
+            post_title: `${blogTitle.value}`,
+            id: `${postID}`,
+        })
+    })
+    .then(response=>response.json())
+    .then(data =>{
+        console.log('success',data)
+    })
+    .catch((error)=>{
+        console.error('error:',error);
+    });
 
 }

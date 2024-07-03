@@ -9,6 +9,7 @@ const deletePost = document.getElementsByClassName('delete-post');
 const editPost = document.getElementsByClassName('edit-post');
 const postHeader = document.getElementsByClassName('card-header');
 const saveCommentButton = document.getElementById('save-comment');
+const saveEditButton = document.getElementById('edit-save-post');
 
 postButton.addEventListener('click', () => {
 
@@ -24,23 +25,6 @@ savePostButton.addEventListener('click',()=>{
     addPost();
 
     const openModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));
-
-    openModal.hide();
-    openModal.dispose();
-
-    modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
-    modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-    window.location.href = '/dashboard';
-
-});
-
-saveCommentButton.addEventListener('click',()=>{
-
-    const modalToDelete = document.getElementById('commentModal');
-
-    addComment(postID);
-
-    const openModal = bootstrap.Modal.getInstance(document.getElementById('commentModal'));
 
     openModal.hide();
     openModal.dispose();
@@ -74,36 +58,76 @@ Array.from(editPost).forEach(button => {
 
         const blogPost = parentPost.querySelector('.card-text').textContent;
         const postTitle = parentPost.querySelector('.card-title').textContent;
-        const theModal = new bootstrap.Modal(document.getElementById('postModal'));
-        document.querySelector('#postModal input[type="text"]').value = postTitle;
-        document.querySelector('#postModal textarea').value = blogPost;
+        const postID = parentPost.id;
+        const theModal = new bootstrap.Modal(document.getElementById('editModal'));
+        document.querySelector('#editModal input[type="text"]').value = postTitle;
+        document.querySelector('#editModal textarea').value = blogPost;
         theModal.show();
+        
+        getPostToEdit(postID);
+        
+        
 
     });
 });
 
-Array.from(postHeader).forEach(button => {
-    button.addEventListener('click',(event)=>{
+Array.from(postHeader).forEach( async button => {
+    button.addEventListener('click', async (event)=>{
 
+        try{
 
+        }catch(err){
+            console.error(err);
+        }
         
-        const headerClicked = event.target;
-        
-        const headerClick = document.querySelector(`#${headerClicked.id}`);
-        const parentPost = headerClick.closest('.blog-post');
-        // alert(`${parentPost.id}`);
-        
-        // const blogPost = parentPost.querySelector('.card-text').textContent;
-        // const postTitle = parentPost.querySelector('.card-title').textContent;
-        // const theModal = new bootstrap.Modal(document.getElementById('postModal'));
-        // document.querySelector('#postModal input[type="text"]').value = postTitle;
-        // document.querySelector('#postModal textarea').value = blogPost;
-        // theModal.show();
-        
-        const theModal = new bootstrap.Modal(document.getElementById('commentModal'), {});
-        theModal.show();
+
     });
 });
+
+function resetEvents(){
+
+    Array.from(postHeader).forEach( async button => {
+        button.addEventListener('click', async (event)=>{
+    
+            try{
+    
+                await setWindow();
+    
+                await setComment(event);
+    
+                await setSave();
+    
+    
+            }catch(err){
+                console.error(err);
+            }
+            
+    
+        });
+    });
+
+
+}
+function getPostToEdit(postID){
+
+    saveEditButton.addEventListener('click',()=>{
+
+        const modalToDelete = document.getElementById('editModal');
+    
+        editPostF(postID);
+    
+        const openModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+    
+        openModal.hide();
+        openModal.dispose();
+    
+        modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+        modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+        window.location.href = '/dashboard';
+    
+    });
+    
+}
 
 
 
