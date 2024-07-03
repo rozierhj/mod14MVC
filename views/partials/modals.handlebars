@@ -52,15 +52,15 @@
       <div class="modal-body">
 
 <div>
-    {{#each posts }}
+    {{#each comments }}
        
-    <div id="{{id}}" class="card blog-post">
-        <h5 id="header-{{id}}" class="card-header">Featured</h5>
+    <div id="comment-{{id}}" class="card post-comment">
+        <h5 id="comment-header-{{id}}" class="card-header">Featured</h5>
         <div class="card-body">
-        <h5 class="card-title">{{post_title}}</h5>
-        <p class="card-text">{{blog_post}}</p>
-        <button id="delete-{{id}}" class="btn btn-primary delete-post">Delete</button>
-        <button id="edit-{{id}}" class="btn btn-primary edit-post">Edit</button>
+        {{!-- <h5 class="card-title">{{post_title}}</h5> --}}
+        <p class="card-text">{{post_comment}}</p>
+        <button id="comment-delete-{{id}}" class="btn btn-primary delete-comment">Delete</button>
+        <button id="comment-edit-{{id}}" class="btn btn-primary edit-comment">Edit</button>
     </div>
 </div>
     {{/each}}
@@ -68,8 +68,6 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button id="save-comment-group" type="button" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
