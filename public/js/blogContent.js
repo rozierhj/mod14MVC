@@ -90,6 +90,9 @@ function editPostF(postID){
     .then(data =>{
         console.log('success',data)
     })
+    .then(()=>{
+        window.location.href = '/dashboard';
+    })
     .catch((error)=>{
         console.error('error:',error);
     });

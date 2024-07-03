@@ -66,7 +66,6 @@ Array.from(editPost).forEach(button => {
         
         getPostToEdit(postID);
         
-        window.location.href = '/dashboard';
 
     });
 });
@@ -106,7 +105,7 @@ function resetEvents(){
 }
 function getPostToEdit(postID){
 
-    saveEditButton.addEventListener('click',()=>{
+    saveEditButton.addEventListener('click', ()=>{
 
         const modalToDelete = document.getElementById('editModal');
     
