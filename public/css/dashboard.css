@@ -1,8 +1,8 @@
 .blog-post{
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 20px;
-    margin-bottom: 20px;
+    width: 800px;
 }
 footer{
     display: flex;
@@ -13,13 +13,39 @@ footer{
     cursor: pointer;
 }
 
-#commentModalGroup .post-comment{
+.post-comment{
 
-    margin: 10px;
-    /* padding: 0 !important; */
+    margin-bottom: 5px;
+    margin-top: 2px;
 
 }
 
+#comments{
+
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    align-items: center;
+    background-color:lightgray;
+    margin-bottom: 5px;
+    width: 800px;
+    padding: 10px;
+
+}
+
+.post-comment{
+
+    width: 700px;
+}
+
+main{
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+}
 /* #commentModalGroup{
     display: flex;
     align-items: center;

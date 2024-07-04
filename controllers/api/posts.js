@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {Post} = require('../../models');
+const {Post, Comment} = require('../../models');
 
 router.post('/add', async(req, res)=>{
     console.log('################################### we added post ################################');
@@ -22,7 +22,6 @@ router.post('/add', async(req, res)=>{
 
 router.put('/edit/:id', async(req, res)=>{
 
-    console.log('################################### we edited post ################################');
     try{
 
         const editPost = await Post.update(
@@ -31,8 +30,6 @@ router.put('/edit/:id', async(req, res)=>{
         post_title: req.body.post_title,},
         {where: {id: req.body.id}});
 
-        
-       // console.log('added post',newPost);
         res.status(200).json(editPost);
 
     }catch(err){
@@ -54,6 +51,34 @@ router.delete('/delete/:id', async(req, res)=>{
 
         await post.destroy();
         res.status(200).json({message:'deletion succesful'});
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+});
+
+router.get('/comments/:post_id',async (req, res) => {
+
+    try{
+
+
+        const allPosts = await Post.findAll({
+            attributes:['id','blog_post','post_title'],
+        });
+        const postID = req.params.post_id;
+        const allComments = await Comment.findAll({
+            attributes: ['id','post_comment','post_id'],
+            where:{
+                post_id: postID
+            }
+        })
+        const posts = allPosts.map(post => post.get({plain: true}));
+        const comments = allComments.map(comment =>comment.get({plain: true}));
+        console.log(comments);
+
+        res.render('dashboard',{posts, comments});
+        //res.status(200).json(editPost);
 
     }catch(err){
         res.status(500).json(err);

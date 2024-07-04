@@ -20,10 +20,47 @@
         <div class="card-body">
         <h5 class="card-title">{{post_title}}</h5>
         <p class="card-text">{{blog_post}}</p>
+        <div></div>
         <button id="delete-{{id}}" class="btn btn-primary delete-post">Delete</button>
         <button id="edit-{{id}}" class="btn btn-primary edit-post">Edit</button>
+        <button id="edit-{{id}}" class="btn btn-primary comment-button">Comments</button>
     </div>
 </div>
+    {{/each}}
+</div>
+
+{{#if comments}}
+<div id="comments">
+    {{#each comments }}
+       
+    <div id="comment-{{id}}" class="card post-comment">
+        <h5 id="comment-header-{{id}}" class="card-header">Featured</h5>
+        <div class="card-body">
+        {{!-- <h5 class="card-title">{{post_title}}</h5> --}}
+        <p class="card-text">{{post_comment}}</p>
+        <button id="comment-delete-{{id}}" class="btn btn-primary delete-comment">Delete</button>
+        <button id="comment-edit-{{id}}" class="btn btn-primary edit-comment">Edit</button>
+    </div>
+</div>
+    {{/each}}
+</div>
+{{/if}}
+
+<div>
+    {{#each otherPost }}
+       
+    <div id="{{id}}" class="card blog-post">
+        <h5 id="header-{{id}}" class="card-header">Featured</h5>
+        <div class="card-body">
+        <h5 class="card-title">{{post_title}}</h5>
+        <p class="card-text">{{blog_post}}</p>
+        <div></div>
+        <button id="delete-{{id}}" class="btn btn-primary delete-post">Delete</button>
+        <button id="edit-{{id}}" class="btn btn-primary edit-post">Edit</button>
+        <button id="edit-{{id}}" class="btn btn-primary comment-button">Comments</button>
+    </div>
+</div>
+
     {{/each}}
 </div>
 

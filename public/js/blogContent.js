@@ -73,6 +73,23 @@ function editPostF(postID){
 
 }
 
+function getCommentsF(postID){
+
+    
+        fetch(`/dashboard/${postID}`)
+        .then(data =>{
+            console.log('success',data);
+        })
+        .then(()=>{
+            window.location.href = `/dashboard/${postID}`;
+        })
+        .catch((error)=>{
+            console.error('error:',error);
+        });
+    
+
+}
+
 function getPostToEdit(postID){
 
     saveEditButton.addEventListener('click', ()=>{
@@ -162,4 +179,13 @@ function resetEvents(){
     });
 
 
+}
+
+function getComments(postID){
+
+
+        getCommentsF(postID);
+            
+        window.location.href = `/dashboard/${postID}`;
+    
 }

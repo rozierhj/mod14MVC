@@ -7,7 +7,7 @@ const postButton = document.getElementById('make-post');
 const savePostButton = document.getElementById('save-post');
 const deletePost = document.getElementsByClassName('delete-post');
 const editPost = document.getElementsByClassName('edit-post');
-const postHeader = document.getElementsByClassName('card-header');
+const commentButton = document.getElementsByClassName('comment-button');
 const saveCommentButton = document.getElementById('save-comment');
 const saveEditButton = document.getElementById('edit-save-post');
 
@@ -70,24 +70,18 @@ Array.from(editPost).forEach(button => {
     });
 });
 
-Array.from(postHeader).forEach( button => {
+Array.from(commentButton).forEach( button => {
     button.addEventListener('click', (event)=>{
 
-        // const buttonClicked = event.target;
+        const buttonClicked = event.target;
 
-        // const buttonClick = document.querySelector(`#${buttonClicked.id}`);
-        // const parentPost = buttonClick.closest('.blog-post');
+        const buttonClick = document.querySelector(`#${buttonClicked.id}`);
+        const parentPost = buttonClick.closest('.blog-post');
 
-        // const postComment = parentPost.querySelector('.card-text').textContent;
-        // // const postTitle = parentPost.querySelector('.card-title').textContent;
-        // const postID = parentPost.id;
-        // const theModal = new bootstrap.Modal(document.getElementById('commentModal'));
-        // theModal.show();
+        const postID = parentPost.id;
         
-        // addComment(postID);
-
-        const theModal = new bootstrap.Modal(document.getElementById('commentModalGroup'), {});
-        theModal.show();
+        getComments(postID);
+    
         
     });
 });
