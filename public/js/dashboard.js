@@ -81,6 +81,8 @@ Array.from(commentButton).forEach( button => {
         const postID = parentPost.id;
         
         getComments(postID);
+
+        
     
         
     });

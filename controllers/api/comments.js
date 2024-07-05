@@ -20,6 +20,24 @@ router.post('/add', async(req, res)=>{
 
 });
 
+router.put('/edit/:id', async(req, res)=>{
+
+    try{
+
+        const comment = await Comment.findOne({where:{id:req.params.id}});
+
+        await Comment.update(
+            
+        {post_comment: req.body.post_comment,},
+        {where: {id: req.body.id}});
+
+        res.status(200).json(comment);
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+});
 
 // router.delete('/delete/:id', async(req, res)=>{
 

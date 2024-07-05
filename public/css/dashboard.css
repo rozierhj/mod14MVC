@@ -12,7 +12,9 @@ footer{
 .card-header:hover{
     cursor: pointer;
 }
-
+body{
+    background-size: cover;
+}
 .post-comment{
 
     margin-bottom: 5px;
@@ -24,12 +26,15 @@ footer{
 
     display: flex;
     flex-direction: column;
-    justify-content:end;
+    justify-content:center;
     align-items: center;
-    background-color:lightgray;
     margin-bottom: 5px;
     width: 800px;
     padding: 10px;
+    z-index: 1000;
+    position:absolute;
+    backdrop-filter: blur(1px);
+    height: 100%;
 
 }
 
@@ -38,12 +43,20 @@ footer{
     width: 700px;
 }
 
+#close-comments{
+
+    margin: 2px;
+    
+
+}
+
 main{
 
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    z-index: 1;
 
 }
 /* #commentModalGroup{

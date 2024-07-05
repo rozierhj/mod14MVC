@@ -2,7 +2,6 @@ const router = require('express').Router();
 const {Post, Comment} = require('../../models');
 
 router.post('/add', async(req, res)=>{
-    console.log('################################### we added post ################################');
     try{
 
         const newPost = await Post.create({
@@ -41,14 +40,14 @@ router.put('/edit/:id', async(req, res)=>{
 router.delete('/delete/:id', async(req, res)=>{
 
     try{
-
+        
         const post = await Post.findByPk(req.params.id);
-
+        
         if(!post){
             res.status(404).json({message:'could not find post'});
             return;
         }
-
+        
         await post.destroy();
         res.status(200).json({message:'deletion succesful'});
 
@@ -75,7 +74,7 @@ router.get('/comments/:post_id',async (req, res) => {
         })
         const posts = allPosts.map(post => post.get({plain: true}));
         const comments = allComments.map(comment =>comment.get({plain: true}));
-        console.log(comments);
+
 
         res.render('dashboard',{posts, comments});
         //res.status(200).json(editPost);

@@ -73,6 +73,64 @@ function editPostF(postID){
 
 }
 
+function editPostF(postID){
+
+    const blogText = document.getElementById('edit-blog-text');
+    const blogTitle = document.getElementById('edit-blog-title');
+
+    fetch(`/api/post/edit/${postID}`,{
+        method: 'PUT',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            blog_post: `${blogText.value}`,
+            post_title: `${blogTitle.value}`,
+            id: `${postID}`,
+        })
+    })
+    .then(response=>response.json())
+    .then(data =>{
+        console.log('success',data)
+    })
+    .then(()=>{
+        window.location.href = '/dashboard';
+    })
+    .catch((error)=>{
+        console.error('error:',error);
+    });
+
+}
+
+function editCommentF(commentID){
+
+    const commentText = document.getElementById('comment-text');
+    commentID = commentID.replace('comment-',"");
+
+    fetch(`/api/comment/edit/${commentID}`,{
+        method: 'PUT',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify({
+            post_comment: `${commentText.value}`,
+            id: `${commentID}`,
+        })
+    })
+    .then(response=>response.json())
+    .then(data =>{
+        console.log(data);
+        window.location.href = `/dashboard/${data.post_id}`;
+    })
+    // .then(()=>{
+    //     window.location.href = `/dashboard/${postID}`;
+    // })
+    .catch((error)=>{
+        console.error('error:',error);
+    });
+
+}
+
 function getCommentsF(postID){
 
     
@@ -106,6 +164,26 @@ function getPostToEdit(postID){
         modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
         modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
         window.location.href = '/dashboard';
+    
+    });
+    
+}
+
+function getCommentToEdit(commentID){
+
+    saveCommentEdit.addEventListener('click', ()=>{
+
+        const modalToDelete = document.getElementById('commentModal');
+    
+        editCommentF(commentID);
+    
+        const openModal = bootstrap.Modal.getInstance(document.getElementById('commentModal'));
+    
+        openModal.hide();
+        openModal.dispose();
+    
+        modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+       // window.location.href = '/dashboard';
     
     });
     

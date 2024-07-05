@@ -12,6 +12,8 @@ router.get('/',async (req, res) => {
 
         const posts = allPosts.map(post => post.get({plain: true}));
 
+        posts.sort((a, b) => a.id - b.id);
+
         res.render('dashboard',{posts});
 
     }catch(err){
@@ -27,9 +29,9 @@ router.get('/:post_id',async (req, res) => {
         const postID = req.params.post_id;
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title'],
-            where:{
-                id: postID
-            }
+            // where:{
+            //     id: postID
+            // }
         });
         const otherPosts = await Post.findAll({
             attributes:['id','blog_post','post_title'],

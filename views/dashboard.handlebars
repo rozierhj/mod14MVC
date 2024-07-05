@@ -11,7 +11,7 @@
 {{> modals}}
 
 <main>
-
+{{> comments}}
 <div>
     {{#each posts }}
        
@@ -29,24 +29,26 @@
     {{/each}}
 </div>
 
-{{#if comments}}
+{{!-- {{#if comments}}
 <div id="comments">
+    <button id="close-comments" class="btn btn-primary delete-comment">Close</button>
     {{#each comments }}
        
     <div id="comment-{{id}}" class="card post-comment">
         <h5 id="comment-header-{{id}}" class="card-header">Featured</h5>
         <div class="card-body">
-        {{!-- <h5 class="card-title">{{post_title}}</h5> --}}
+        {{!-- <h5 class="card-title">{{post_title}}</h5>
         <p class="card-text">{{post_comment}}</p>
         <button id="comment-delete-{{id}}" class="btn btn-primary delete-comment">Delete</button>
         <button id="comment-edit-{{id}}" class="btn btn-primary edit-comment">Edit</button>
     </div>
 </div>
+    
     {{/each}}
 </div>
-{{/if}}
+{{/if}} --}}
 
-<div>
+{{!-- <div>
     {{#each otherPost }}
        
     <div id="{{id}}" class="card blog-post">
@@ -59,10 +61,10 @@
         <button id="edit-{{id}}" class="btn btn-primary edit-post">Edit</button>
         <button id="edit-{{id}}" class="btn btn-primary comment-button">Comments</button>
     </div>
-</div>
+</div> --}}
 
-    {{/each}}
-</div>
+    {{!-- {{/each}}
+</div> --}}
 
 </main>
 
@@ -70,3 +72,5 @@
     <button id="make-post" type="button" class="btn btn-primary btn-lg">New Post</button>
 </footer>
 <script src="/js/dashboard.js"></script>
+<script src="/js/comments.js"></script>
+<script src="/js/blogContent.js"></script>
