@@ -40,6 +40,25 @@ router.put('/edit/:id', async(req, res)=>{
 
 });
 
+router.get('/get/:id', async(req, res)=>{
+
+
+    try{
+
+        const comment = await Comment.findOne({where:{id:req.params.id}});
+
+        
+        const commentData = comment.get({plain:true})
+        
+        console.log('555555555555555555555555555555555555555555555555555555555555555555555555555',commentData);
+        res.status(200).json(commentData.post_id);
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+});
+
 // router.delete('/delete/:id', async(req, res)=>{
 
 //     try{

@@ -59,7 +59,7 @@ router.delete('/delete/:id', async(req, res)=>{
 
 router.get('/comments/:post_id',async (req, res) => {
 
-    console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
+    console.log('y');
     try{
 
 

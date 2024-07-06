@@ -143,7 +143,7 @@ async function getCommentsF(postID){
         }
         else{
             window.location.href = `/dashboard/${postID}`;
-            return true;
+            return postID;
         }
 
     }
@@ -218,7 +218,7 @@ function createComment(postID){
 
 }
 
-function addComment(postID){
+async function addComment(postID){
 
     saveCommentButton.addEventListener('click', ()=>{
 
@@ -279,6 +279,7 @@ async function getComments(postID){
          }
         else{
             window.location.href = `/dashboard/${postID}`;
+            return postID;
         }
             
     

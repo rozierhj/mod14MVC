@@ -1,7 +1,10 @@
 
 {{#if comments}}
 <div id="comments">
+    <div id="comment-buttons">
     <button id="close-comments" class="btn btn-primary delete-comment">Close</button>
+    <button id="create-comment" class="btn btn-primary edit-comment">New Comment</button>
+    </div>
     {{#each comments as |aComment|}}
        
     <div id="comment-{{aComment.id}}" class="card post-comment">
