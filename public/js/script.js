@@ -14,7 +14,7 @@ dashboardButton.addEventListener('click', () => {
  });
  homeButton.addEventListener('click', () => {
     // alert('you are in login.js');
-     window.location.href = '/home';
+     window.location.href = '/homepage';
  });
  logoutButton.addEventListener('click', () => {
     // alert('you are in login.js');

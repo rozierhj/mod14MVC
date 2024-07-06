@@ -1,10 +1,22 @@
-
 {{#if comments}}
+
 <div id="comments">
-    <div id="comment-buttons">
+        <div id="comment-buttons">
     <button id="close-comments" class="btn btn-primary delete-comment">Close</button>
     <button id="create-comment" class="btn btn-primary edit-comment">New Comment</button>
     </div>
+    {{#each otherPost}}
+   <div id="{{id}}" class="card blog-post">
+        <h5 id="header-{{id}}" class="card-header">Featured</h5>
+        <div class="card-body">
+        <h5 class="card-title">{{post_title}}</h5>
+        <p class="card-text">{{blog_post}}</p>
+        <button id="delete-{{id}}" class="btn btn-primary delete-post">Delete</button>
+        <button id="edit-{{id}}" class="btn btn-primary edit-post">Edit</button>
+        <button id="edit-{{id}}" class="btn btn-primary comment-button">Comments</button>
+    </div>
+</div>
+    {{/each}}
     {{#each comments as |aComment|}}
        
     <div id="comment-{{aComment.id}}" class="card post-comment">
@@ -17,5 +29,6 @@
 </div>
     
     {{/each}}
+
 </div>
 {{/if}}

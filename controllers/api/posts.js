@@ -76,13 +76,13 @@ router.get('/comments/:post_id',async (req, res) => {
             }
         })
         if(allComments.length < 1){
-            console.log('uuuuuuuuuuuuuuuuuuuuuuuu hi ttttttttttttttttttttt');
+            console.log('');
         }
         const posts = allPosts.map(post => post.get({plain: true}));
         const comments = allComments.map(comment =>comment.get({plain: true}));
 
 
-        res.render('dashboard',{posts, comments});
+        res.render('homepage',{posts, comments});
         //res.status(200).json(editPost);
 
     }catch(err){

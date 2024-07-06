@@ -1,6 +1,6 @@
 // const { response } = require("express");
 document.addEventListener('DOMContentLoaded', function () {
-    window.scrollTo(0, document.body.scrollHeight);
+    // window.scrollTo(0, document.body.scrollHeight);
 });
 
 const postButton = document.getElementById('make-post');
@@ -31,7 +31,7 @@ savePostButton.addEventListener('click',()=>{
 
     modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
     modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-    window.location.href = '/dashboard';
+    window.location.href = '/homepage';
 
 });
 

@@ -50,7 +50,6 @@ router.get('/get/:id', async(req, res)=>{
         
         const commentData = comment.get({plain:true})
         
-        console.log('555555555555555555555555555555555555555555555555555555555555555555555555555',commentData);
         res.status(200).json(commentData.post_id);
 
     }catch(err){
@@ -59,25 +58,27 @@ router.get('/get/:id', async(req, res)=>{
 
 });
 
-// router.delete('/delete/:id', async(req, res)=>{
+router.delete('/delete/:id', async(req, res)=>{
 
-//     try{
+    try{
 
-//         const post = await Post.findByPk(req.params.id);
+        const comment = await Comment.findByPk(req.params.id);
+        const commentCount = await Comment.findAll();
+        const commentCountTotal = commentCount.length;
 
-//         if(!post){
-//             res.status(404).json({message:'could not find post'});
-//             return;
-//         }
+        if(!comment){
+            res.status(404).json({message:'could not find post'});
+            return;
+        }
 
-//         await post.destroy();
-//         res.status(200).json({message:'deletion succesful'});
+        await comment.destroy();
+        res.status(200).json({length:`${commentCountTotal}`});
 
-//     }catch(err){
-//         res.status(500).json(err);
-//     }
+    }catch(err){
+        res.status(500).json(err);
+    }
 
-// });
+});
 
 
 
