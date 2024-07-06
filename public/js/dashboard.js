@@ -79,11 +79,8 @@ Array.from(commentButton).forEach( button => {
         const parentPost = buttonClick.closest('.blog-post');
 
         const postID = parentPost.id;
-        
-        getComments(postID);
 
-        
-    
+        getComments(postID);
         
     });
 });

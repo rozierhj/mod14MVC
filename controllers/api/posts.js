@@ -59,19 +59,25 @@ router.delete('/delete/:id', async(req, res)=>{
 
 router.get('/comments/:post_id',async (req, res) => {
 
+    console.log('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd');
     try{
 
 
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title'],
         });
+
         const postID = req.params.post_id;
+
         const allComments = await Comment.findAll({
             attributes: ['id','post_comment','post_id'],
             where:{
                 post_id: postID
             }
         })
+        if(allComments.length < 1){
+            console.log('uuuuuuuuuuuuuuuuuuuuuuuu hi ttttttttttttttttttttt');
+        }
         const posts = allPosts.map(post => post.get({plain: true}));
         const comments = allComments.map(comment =>comment.get({plain: true}));
 

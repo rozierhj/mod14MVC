@@ -47,13 +47,17 @@ router.get('/:post_id',async (req, res) => {
                 post_id: postID
             }
         })
-        const posts = allPosts.map(post => post.get({plain: true}));
-        const comments = allComments.map(comment =>comment.get({plain: true}));
-        const otherPost = otherPosts.map(post=>post.get({plain: true}));
-        console.log(comments);
+        if(allComments.length < 1){
+            res.json({response:false});
+        }
+        else{
 
-        res.render('dashboard',{posts, comments, otherPost});
-        //res.status(200).json(editPost);
+            const posts = allPosts.map(post => post.get({plain: true}));
+            const comments = allComments.map(comment =>comment.get({plain: true}));
+            const otherPost = otherPosts.map(post=>post.get({plain: true}));
+            res.render('dashboard',{posts, comments, otherPost});
+            //res.status(200).json(editPost);
+        }
 
     }catch(err){
         res.status(500).json(err);

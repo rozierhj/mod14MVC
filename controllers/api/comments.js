@@ -22,6 +22,7 @@ router.post('/add', async(req, res)=>{
 
 router.put('/edit/:id', async(req, res)=>{
 
+
     try{
 
         const comment = await Comment.findOne({where:{id:req.params.id}});

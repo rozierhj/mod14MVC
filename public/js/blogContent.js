@@ -131,21 +131,26 @@ function editCommentF(commentID){
 
 }
 
-function getCommentsF(postID){
+async function getCommentsF(postID){
 
-    
-        fetch(`/dashboard/${postID}`)
-        .then(data =>{
-            console.log('success',data);
-        })
-        .then(()=>{
+    try{
+        const response = await fetch(`/dashboard/${postID}`);
+
+        const data = await response.json();
+
+        if(data.response === false){
+            return false;
+        }
+        else{
             window.location.href = `/dashboard/${postID}`;
-        })
-        .catch((error)=>{
-            console.error('error:',error);
-        });
-    
+            return true;
+        }
 
+    }
+    catch(err){
+        console.error('bad request',err);
+    }
+    
 }
 
 function getPostToEdit(postID){
@@ -175,7 +180,7 @@ function getCommentToEdit(commentID){
 
         const modalToDelete = document.getElementById('commentModal');
     
-        editCommentF(commentID);
+       editCommentF(commentID);      
     
         const openModal = bootstrap.Modal.getInstance(document.getElementById('commentModal'));
     
@@ -259,11 +264,22 @@ function resetEvents(){
 
 }
 
-function getComments(postID){
+async function getComments(postID){
+
+        const commentGotten = await getCommentsF(postID);
+
+        if(commentGotten=== false){
 
 
-        getCommentsF(postID);
+            const theModal = new bootstrap.Modal(document.getElementById('commentModal'));
+            theModal.show();
             
-        window.location.href = `/dashboard/${postID}`;
+            addComment(postID);
+
+         }
+        else{
+            window.location.href = `/dashboard/${postID}`;
+        }
+            
     
 }
