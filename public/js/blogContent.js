@@ -1,25 +1,33 @@
-function addPost(){
+async function addPost(userID){
 
     const blogText = document.getElementById('blog-text');
     const blogTitle = document.getElementById('blog-title');
 
-    fetch('/api/post/add',{
-        method: 'POST',
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-            blog_post: `${blogText.value}`,
-            post_title: `${blogTitle.value}`,
-        })
-    })
-    .then(response=>response.json())
-    .then(data =>{
-        console.log('success',data)
-    })
-    .catch((error)=>{
-        console.error('error:',error);
-    });
+
+    try{
+
+        alert(userID);
+        const response = await fetch('/api/post/add',{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({
+                blog_post: `${blogText.value}`,
+                post_title: `${blogTitle.value}`,
+                post_date: new Date(),
+                user_id: 11,
+    
+            })
+        });
+
+        const data = await response.json();
+
+        console.log('success',data);
+    }
+    catch(err){
+        console.error(err);
+    }
 
 }
 
@@ -146,5 +154,22 @@ function resetEvents(){
         });
     });
 
+
+}
+
+async function getUserID(user_name){
+
+    try{
+
+        const response = await fetch(`api/users/${user_name}`);
+
+        const data = await response.json();
+
+        return data.id;
+
+    }
+    catch(err){
+        console.error(err);
+    }
 
 }

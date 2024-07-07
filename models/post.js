@@ -23,13 +23,14 @@ Post.init(
             type: DataTypes.DATE,
             allowNull: true,
         },
-        // user_name: {
-        //     type: DataTypes.STRING,
-        //     references:{
-        //         model: 'user',
-        //         key:'user_name',
-        //     },
-        // },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references:{
+                model: 'user',
+                key:'id',
+                onDelete: 'CASCADE',
+            },
+       },
     },
     {
         sequelize,

@@ -3,11 +3,13 @@ const {Post, Comment} = require('../../models');
 
 router.post('/add', async(req, res)=>{
     try{
-
+        console.log('ttttttttttttttttttttttttttttttttttttttttttttttttttttttttt');
         const newPost = await Post.create({
 
             blog_post: req.body.blog_post,
             post_title: req.body.post_title,
+            post_date: new Date(),
+            user_id: req.body.user_id,
 
         });
        // console.log('added post',newPost);

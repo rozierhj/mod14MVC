@@ -15,6 +15,10 @@ Comment.init(
             type: DataTypes.TEXT,
           //  allowNull: false,
         },
+        comment_date:{
+            type: DataTypes.DATE,
+            allowNull: true,
+        },
         post_id: {
              type: DataTypes.INTEGER,
              references:{
@@ -23,6 +27,14 @@ Comment.init(
                  onDelete: 'CASCADE',
              },
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references:{
+                model: 'user',
+                key:'id',
+                onDelete: 'CASCADE',
+            },
+       },
     },
     {
         sequelize,

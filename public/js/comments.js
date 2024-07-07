@@ -4,6 +4,9 @@
     const saveCommentEdit = document.getElementById('save-comment');
     const createNewComment = document.getElementById('create-comment');
     const deleteComment = document.getElementsByClassName('delete-comment');
+//    poster = JSON.parse(sessionStorage.getItem('user'));
+//    currentUser = poster.username;
+
 
     if(createNewComment !== null){
 
@@ -11,8 +14,8 @@
     
             const buttonParent = createNewComment.parentElement;
             const parent = buttonParent.parentElement;
-            const closestComment = parent.querySelector('.post-comment'); 
-            const closestCommentID = closestComment.id.replace('comment-',"");
+            const closestComments = parent.querySelector('.post-comment'); 
+            const closestCommentID = closestComments.id.replace('comment-',"");
             const postID = await getPostIDByComment(closestCommentID);
 
             const theModal = new bootstrap.Modal(document.getElementById('commentModal'));
@@ -177,37 +180,41 @@
         
     }
     
-    function createComment(postID){
+    async function createComment(postID, userID){
     
-        const postComment = document.getElementById('comment-text');
+        try{
+            const postComment = document.getElementById('comment-text');
     
-        fetch('/api/comment/add',{
-            method: 'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({
-                post_comment: `${postComment.value}`,
-                post_id: `${postID}`,
-            })
-        })
-        .then(response=>response.json())
-        .then(data =>{
-            console.log('success',data)
-        })
-        .catch((error)=>{
-            console.error('error:',error);
-        });
-    
+            const response = await fetch('/api/comment/add',{
+                  method: 'POST',
+                  headers:{
+                      'Content-Type':'application/json'
+                  },
+                  body: JSON.stringify({
+                      post_comment: `${postComment.value}`,
+                      post_id: `${postID}`,
+                      user_id: userID,
+                  })
+              })
+              const data = await response.json();
+      
+              console.log(data);
+        }
+        catch(err){
+            console.error(err);
+        }
     }
     
     async function addComment(postID){
-    
-        saveCommentButton.addEventListener('click', ()=>{
+
+        
+        saveCommentButton.addEventListener('click', async ()=>{
     
             const modalToDelete = document.getElementById('commentModal');
+
+            const userID = await getUserID(currentUser);
         
-            createComment(postID);
+            await createComment(postID, userID);
         
             const openModal = bootstrap.Modal.getInstance(document.getElementById('commentModal'));
         
