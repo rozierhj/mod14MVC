@@ -23,11 +23,11 @@ Post.init(
             type: DataTypes.DATE,
             allowNull: true,
         },
-        user_id: {
-            type: DataTypes.INTEGER,
+        user_name: {
+            type: DataTypes.STRING,
             references:{
                 model: 'user',
-                key:'id',
+                key:'user_name',
                 onDelete: 'CASCADE',
             },
        },

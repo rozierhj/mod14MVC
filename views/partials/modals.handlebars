@@ -15,7 +15,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button id="save-post" type="button" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary">Comments</button>
+        {{!-- <button type="button" class="btn btn-secondary">Comments</button> --}}
       </div>
     </div>
   </div>
@@ -26,12 +26,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Post Comment</h5>
+
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        {{!-- <input id="comment-title" class="form-control" type="text" placeholder="Default input" aria-label="default input example"> --}}
+        <div id="post-details">
+            <h5 id="post-details-header"></h5>
+            <p id="post-details-title"></p>
+            <p id="post-details-text"></p>
+        </div>
         <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Example text area</label>
+        <label for="exampleFormControlTextarea1" class="form-label">add Comment</label>
         <textarea class="form-control" id="comment-text"></textarea>
         </div>
       </div>
@@ -80,7 +85,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button id="edit-save-post" type="button" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Comments</button>
+        {{!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Comments</button> --}}
       </div>
     </div>
   </div>

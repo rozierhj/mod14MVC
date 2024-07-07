@@ -10,7 +10,7 @@ router.post('/add', async(req, res)=>{
             post_comment: req.body.post_comment,
             post_id: req.body.post_id,
             comment_date: new Date(),
-            user_id: req.body.user_id,
+            user_name: req.body.user_name,
 
         });
        // console.log('added post',newPost);

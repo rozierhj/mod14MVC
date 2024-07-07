@@ -59,6 +59,29 @@ main{
     z-index: 1;
 
 }
+
+.post-header{
+
+    font-size: 16px !important;
+
+}
+
+#post-details{
+    margin: 0;
+    padding: 5px;
+    border: 3px solid black;
+}
+
+#post-details-header{
+    font-size: 16px !important;
+    background-color: lightgrey;
+    padding: 5px;
+    border-bottom: 2px solid darkgray;
+}
+
+#post-details-title{
+    font-weight: bolder;
+}
 /* #commentModalGroup{
     display: flex;
     align-items: center;

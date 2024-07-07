@@ -1,11 +1,10 @@
-async function addPost(userID){
+async function addPost(){
 
     const blogText = document.getElementById('blog-text');
     const blogTitle = document.getElementById('blog-title');
 
 
     try{
-
         const response = await fetch('/api/post/add',{
             method: 'POST',
             headers:{
@@ -15,7 +14,7 @@ async function addPost(userID){
                 blog_post: `${blogText.value}`,
                 post_title: `${blogTitle.value}`,
                 post_date: new Date(),
-                user_id: userID,
+                user_name: `${currentUser}`,
     
             })
         });

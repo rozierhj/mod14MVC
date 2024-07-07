@@ -7,7 +7,7 @@ router.get('/',async (req, res) => {
     try{
 
         const allPosts = await Post.findAll({
-            attributes:['id','blog_post','post_title','post_date','user_id'],
+            attributes:['id','blog_post','post_title','post_date','user_name'],
         });
 
         const posts = allPosts.map(post => post.get({plain: true}));
@@ -28,19 +28,19 @@ router.get('/:post_id',async (req, res) => {
 
         const postID = req.params.post_id;
         const allPosts = await Post.findAll({
-            attributes:['id','blog_post','post_title','post_date','user_id'],
+            attributes:['id','blog_post','post_title','post_date','user_name'],
             // where:{
             //     id: postID
             // }
         });
         const otherPosts = await Post.findAll({
-            attributes:['id','blog_post','post_title','post_date','user_id'],
+            attributes:['id','blog_post','post_title','post_date','user_name'],
                 where:{
                     id: postID
                 }
         });
         const allComments = await Comment.findAll({
-            attributes: ['id','post_comment','comment_date','post_id','user_id'],
+            attributes: ['id','post_comment','comment_date','post_id','user_name'],
             where:{
                 post_id: postID
             }

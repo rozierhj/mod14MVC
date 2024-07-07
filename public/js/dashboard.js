@@ -1,148 +1,93 @@
-// const { response } = require("express");
-document.addEventListener('DOMContentLoaded', function () {
-    // window.scrollTo(0, document.body.scrollHeight);
-});
+// // const { response } = require("express");
+// document.addEventListener('DOMContentLoaded', function () {
+//     // window.scrollTo(0, document.body.scrollHeight);
+// });
 
-const postButton = document.getElementById('make-post');
-const savePostButton = document.getElementById('save-post');
-const deletePost = document.getElementsByClassName('delete-post');
-const editPost = document.getElementsByClassName('edit-post');
-const commentButton = document.getElementsByClassName('comment-button');
-const saveCommentButton = document.getElementById('save-comment');
-const saveEditButton = document.getElementById('edit-save-post');
-const poster = JSON.parse(sessionStorage.getItem('user'));
-const currentUser = poster.username;
+// const postButton = document.getElementById('make-post');
+// const savePostButton = document.getElementById('save-post');
+// const deletePost = document.getElementsByClassName('delete-post');
+// const editPost = document.getElementsByClassName('edit-post');
+// const commentButton = document.getElementsByClassName('comment-button');
+// const saveCommentButton = document.getElementById('save-comment');
+// const saveEditButton = document.getElementById('edit-save-post');
+// const poster = JSON.parse(sessionStorage.getItem('user'));
+// const currentUser = poster.username;
 
-postButton.addEventListener('click', () => {
+// postButton.addEventListener('click', () => {
 
-    const theModal = new bootstrap.Modal(document.getElementById('postModal'), {});
-    theModal.show();
+//     const theModal = new bootstrap.Modal(document.getElementById('postModal'), {});
+//     theModal.show();
 
-});
+// });
 
-savePostButton.addEventListener('click',async ()=>{
+// savePostButton.addEventListener('click',async ()=>{
 
-    const modalToDelete = document.getElementById('postModal');
+//     const modalToDelete = document.getElementById('postModal');
 
-    const userID = await getUserID(currentUser);
+//     const userID = await getUserID(currentUser);
 
-    await addPost(userID);
+//     await addPost(userID);
 
-    const openModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));
+//     const openModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));
 
-    openModal.hide();
-    openModal.dispose();
+//     openModal.hide();
+//     openModal.dispose();
 
-    modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
-    modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-    //window.location.href = '/homepage';
+//     modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
+//     modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+//     window.location.href = '/dashboard';
 
-});
+// });
 
-Array.from(deletePost).forEach(button => {
-    button.addEventListener('click',(event)=>{
+// Array.from(deletePost).forEach(button => {
+//     button.addEventListener('click',(event)=>{
 
-        const buttonClicked = event.target;
+//         const buttonClicked = event.target;
 
-        const buttonClick = document.querySelector(`#${buttonClicked.id}`);
-        const parentPost = buttonClick.closest('.blog-post');
-        deleteThePost(parentPost.id);
+//         const buttonClick = document.querySelector(`#${buttonClicked.id}`);
+//         const parentPost = buttonClick.closest('.blog-post');
+//         deleteThePost(parentPost.id);
 
-    });
-});
+//     });
+// });
 
-Array.from(editPost).forEach(async button => {
+// Array.from(editPost).forEach(async button => {
 
-    button.addEventListener('click', (event)=>{
+//     button.addEventListener('click', (event)=>{
 
 
-        const buttonClicked = event.target;
+//         const buttonClicked = event.target;
 
-        const buttonClick = document.querySelector(`#${buttonClicked.id}`);
-        const parentPost = buttonClick.closest('.blog-post');
+//         const buttonClick = document.querySelector(`#${buttonClicked.id}`);
+//         const parentPost = buttonClick.closest('.blog-post');
 
-        const blogPost = parentPost.querySelector('.card-text').textContent;
-        const postTitle = parentPost.querySelector('.card-title').textContent;
-        const postID = parentPost.id;
-        const theModal = new bootstrap.Modal(document.getElementById('editModal'));
-        document.querySelector('#editModal input[type="text"]').value = postTitle;
-        document.querySelector('#editModal textarea').value = blogPost;
-        theModal.show();
+//         const blogPost = parentPost.querySelector('.card-text').textContent;
+//         const postTitle = parentPost.querySelector('.card-title').textContent;
+//         const postID = parentPost.id;
+//         const theModal = new bootstrap.Modal(document.getElementById('editModal'));
+//         document.querySelector('#editModal input[type="text"]').value = postTitle;
+//         document.querySelector('#editModal textarea').value = blogPost;
+//         theModal.show();
         
-        getPostToEdit(postID);
+//         getPostToEdit(postID);
         
-    });
-});
+//     });
+// });
 
-Array.from(commentButton).forEach( button => {
-    button.addEventListener('click', (event)=>{
+// Array.from(commentButton).forEach( button => {
+//     button.addEventListener('click', (event)=>{
 
-        const buttonClicked = event.target;
+//         const buttonClicked = event.target;
 
-        const buttonClick = document.querySelector(`#${buttonClicked.id}`);
-        const parentPost = buttonClick.closest('.blog-post');
+//         const buttonClick = document.querySelector(`#${buttonClicked.id}`);
+//         const parentPost = buttonClick.closest('.blog-post');
 
-        const postID = parentPost.id;
+//         const postID = parentPost.id;
 
-        getComments(postID);
+//         getComments(postID);
         
-    });
-});
+//     });
+// });
 
-async function getStuff(ids){
-
-    const post = await addPost1(ids);
-    return post;
-}
-
-async function getUserID_db(user_name){
-
-    try{
-        const response = await fetch(`api/users/${user_name}`);
-
-        const data = await response.json();
-
-
-        return data.id;
-
-    }
-    catch(err){
-        console.error(err);
-    }
-
-}
-
-async function addPost1(userID){
-
-    const blogText = document.getElementById('blog-text');
-    const blogTitle = document.getElementById('blog-title');
-
-
-    try{
-
-        alert(userID);
-        const response = await fetch('/api/post/add',{
-            method: 'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({
-                blog_post: `${blogText.value}`,
-                post_title: `${blogTitle.value}`,
-                post_date: new Date(),
-                user_id: userID,
-    
-            })
-        });
-
-        const data = await response.json();
-
-        console.log('success',data);
-    }
-    catch(err){
-        console.error(err);
-    }
-
-}
 
 

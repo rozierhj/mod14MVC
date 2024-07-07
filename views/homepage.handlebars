@@ -13,13 +13,14 @@
 <main>
 {{> comments}}
 <div>
+    {{#if posts}}
     {{#each posts }}
        
     <div id="{{id}}" class="card blog-post">
-        <h5 id="header-{{id}}" class="card-header">Featured</h5>
+        <h5 id="header-{{id}}" class="card-header post-header">post by {{user_name}} on {{set_date post_date}}</h5>
         <div class="card-body">
-        <h5 class="card-title">{{post_title}}</h5>
-        <p class="card-text">{{blog_post}}</p>
+        <h5 id="post-title-{{id}}" class="card-title">{{post_title}}</h5>
+        <p id="post-text-{{id}}" class="card-text">{{blog_post}}</p>
         <div></div>
         <button id="delete-{{id}}" class="btn btn-primary delete-post">Delete</button>
         <button id="edit-{{id}}" class="btn btn-primary edit-post">Edit</button>
@@ -27,6 +28,7 @@
     </div>
 </div>
     {{/each}}
+    {{/if}}
 </div>
 
 </main>

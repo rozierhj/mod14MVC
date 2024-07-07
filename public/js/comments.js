@@ -18,11 +18,14 @@
             const closestCommentID = closestComments.id.replace('comment-',"");
             const postID = await getPostIDByComment(closestCommentID);
 
+            prepareCommentModal(postID);
             const theModal = new bootstrap.Modal(document.getElementById('commentModal'));
+            document.querySelector('#commentModal textarea').value = '';
+
             theModal.show();
     
             console.log(postID);
-            await addComment(postID);   
+            await addComment(postID, postHeader);   
     
         });
 
@@ -40,14 +43,19 @@
         button.addEventListener('click',(event)=>{
     
             const buttonClicked = event.target;
-    
+                const parent = document.getElementById('comments');
+                const post = parent.querySelector('.blog-post');
+                const postID = post.id;
                 const buttonClick = document.querySelector(`#${buttonClicked.id}`);
                 const parentComment = buttonClick.closest('.post-comment');
                 if(parentComment !== null){
                 const commentText = parentComment.querySelector('.card-text').textContent;
                 const commentID = parentComment.id;
+
+ 
                 const theModal = new bootstrap.Modal(document.getElementById('commentModal'));
                 document.querySelector('#commentModal textarea').value = commentText;
+                prepareCommentModal(postID);
                 theModal.show();
                 
                getCommentToEdit(commentID);
@@ -180,7 +188,7 @@
         
     }
     
-    async function createComment(postID, userID){
+    async function createComment(postID, userName){
     
         try{
             const postComment = document.getElementById('comment-text');
@@ -193,7 +201,7 @@
                   body: JSON.stringify({
                       post_comment: `${postComment.value}`,
                       post_id: `${postID}`,
-                      user_id: userID,
+                      user_name: userName,
                   })
               })
               const data = await response.json();
@@ -211,10 +219,8 @@
         saveCommentButton.addEventListener('click', async ()=>{
     
             const modalToDelete = document.getElementById('commentModal');
-
-            const userID = await getUserID(currentUser);
         
-            await createComment(postID, userID);
+            await createComment(postID, currentUser);
         
             const openModal = bootstrap.Modal.getInstance(document.getElementById('commentModal'));
         
@@ -236,6 +242,7 @@
         if(commentGotten=== false){
 
 
+            prepareCommentModal(postID);
             const theModal = new bootstrap.Modal(document.getElementById('commentModal'));
             theModal.show();
             
@@ -248,5 +255,20 @@
         }
             
     
+}
+
+function prepareCommentModal(postID){
+
+    const postHeader = document.getElementById(`header-${postID}`);
+    let commentHeader = document.getElementById('post-details-header');
+    commentHeader.innerHTML = postHeader.innerHTML
+
+    const postTitle = document.getElementById(`post-title-${postID}`);
+    const postText = document.getElementById(`post-text-${postID}`);
+    let commentText = document.getElementById('post-details-text');
+    let commentTitle = document.getElementById('post-details-title');
+    commentTitle.innerHTML = postTitle.innerHTML;
+    commentText.innerHTML = postText.innerHTML;
+
 }
 

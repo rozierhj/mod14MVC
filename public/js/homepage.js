@@ -24,9 +24,8 @@ savePostButton.addEventListener('click',async ()=>{
 
     const modalToDelete = document.getElementById('postModal');
 
-    const userID = await getUserID(currentUser);
-
-    await addPost(userID);
+    alert(currentUser);
+    await addPost();
 
     const openModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));
 

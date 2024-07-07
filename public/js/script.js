@@ -15,12 +15,12 @@ dashboardButton.addEventListener('click', async () => {
     // alert('you are in login.js');
     const userID = await  getUserID(currentUser1);
 
-    if(userID > 0){
+     if(userID > 0){
         window.location.href = `/dashboard/${userID}`;
-    }
-    else{
+     }
+     else{
         window.location.href = `/dashboard`;
-    }
+     }
     
  });
  homeButton.addEventListener('click', () => {
