@@ -15,7 +15,6 @@ dashboardButton.addEventListener('click', async () => {
     // alert('you are in login.js');
     const userID = await  getUserID(currentUser1);
 
-    alert(userID);
     if(userID > 0){
         window.location.href = `/dashboard/${userID}`;
     }
@@ -32,7 +31,6 @@ dashboardButton.addEventListener('click', async () => {
     // alert('you are in login.js');
      window.location.href = '/';
  });
-
  if(loginButton !== null){
 
     loginButton.addEventListener('click', () => {

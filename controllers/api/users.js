@@ -61,8 +61,7 @@ const { User } = require('../../models');
 // });
 
 router.get('/:user_name', async(req, res) =>{
-    
-
+  
     try{
         const user = await User.findOne({
             attributes:['id','user_name','password'],
