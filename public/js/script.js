@@ -16,7 +16,7 @@ dashboardButton.addEventListener('click', async () => {
     const userID = await  getUserID(currentUser1);
 
      if(userID > 0){
-        window.location.href = `/dashboard/${userID}`;
+        window.location.href = `/dashboard/${currentUser1}`;
      }
      else{
         window.location.href = `/dashboard`;

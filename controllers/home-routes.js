@@ -12,7 +12,7 @@ router.get('/',async (req, res) => {
 
         const posts = allPosts.map(post => post.get({plain: true}));
 
-        posts.sort((a, b) => a.id - b.id);
+        posts.sort((a, b) => b.id - a.id);
 
         res.render('homepage',{posts});
 
@@ -51,7 +51,7 @@ router.get('/:post_id',async (req, res) => {
         else{
 
             const posts = allPosts.map(post => post.get({plain: true}));
-            posts.sort((a, b) => a.id - b.id);
+            posts.sort((a, b) => b.id - a.id);
             const comments = allComments.map(comment =>comment.get({plain: true}));
             comments.sort((a, b) => a.id - b.id);
             const otherPost = otherPosts.map(post=>post.get({plain: true}));

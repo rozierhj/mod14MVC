@@ -40,7 +40,7 @@ function deleteThePost(id){
     .then(response => response.json())
     .then(data => {
     console.log('Delete successful:', data);
-    window.location.href = '/homepage';
+    window.location.reload();
     })
     .catch(error => {
     console.error('Error:', error);
@@ -69,7 +69,7 @@ function editPostF(postID){
         console.log('success',data)
     })
     .then(()=>{
-        window.location.href = '/homepage';
+        window.location.reload();
     })
     .catch((error)=>{
         console.error('error:',error);
@@ -92,7 +92,7 @@ function getPostToEdit(postID){
     
         modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
         modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-        window.location.href = '/homepage';
+        window.location.reload();
     
     });
     
@@ -123,19 +123,4 @@ function resetEvents(){
 
 }
 
-async function getUserID(user_name){
 
-    try{
-
-        const response = await fetch(`api/users/${user_name}`);
-
-        const data = await response.json();
-
-        return data.id;
-
-    }
-    catch(err){
-        console.error(err);
-    }
-
-}

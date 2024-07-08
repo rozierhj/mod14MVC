@@ -10,8 +10,6 @@ const editPost = document.getElementsByClassName('edit-post');
 const commentButton = document.getElementsByClassName('comment-button');
 const saveCommentButton = document.getElementById('save-comment');
 const saveEditButton = document.getElementById('edit-save-post');
-const poster = JSON.parse(sessionStorage.getItem('user'));
-const currentUser = poster.username;
 
 postButton.addEventListener('click', () => {
 

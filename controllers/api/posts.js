@@ -91,4 +91,21 @@ router.get('/comments/:post_id',async (req, res) => {
 
 });
 
+router.get('/:id', async(req, res) =>{
+
+    try{
+        
+        const post = await Post.findOne({
+            attributes:['id','blog_post','post_title','post_date','user_name'],
+            where:{id:req.params.id},
+        });
+
+        res.status(200).json(post);
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+} );
+
 module.exports = router;

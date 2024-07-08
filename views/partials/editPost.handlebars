@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Page with Script</title>
+  <style>
+
+#post-to-be-edited{
+
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:baseline;
+    align-items: center;
+    margin-bottom: 5px;
+    width: 1000px;
+    padding: 10px;
+    z-index: 1000;
+    position:absolute;
+    backdrop-filter: blur(10px);
+    height:auto;
+}
+#edit-post-header{
+  width: 100%;
+  font-size: 16px;
+}
+#edit-post-title{
+  width: 100%;
+}
+#post-to-be-edited .card-body{
+  width: 100%;
+}
+#edit-post-body{
+  height: 200px;
+  border-top: 2px solid black;
+}
+
+  </style>
+</head>
+<body>
+  
+
+{{#if editPost}}
+{{#each editPost as |post|}}
+<div id="post-to-be-edited" class="card">
+  <h5 id="edit-post-header" class="card-header">post by {{post.user_name}} on {{set_date post.post_date}}</h5>
+  <div class="card-body">
+    <h5 id="edit-post-title" class="card-title">{{post.post_title}}</h5>
+    <p id="edit-post-body" class="card-text">{{post.blog_post}}</p>
+    <button id="edit-post-btn-dab" class="btn btn-primary">Edit</button>
+    <button id="delete-post-btn-dab" class="btn btn-primary">Delete</button>
+    <button id="close-post-page-dab" class="btn btn-primary">Close</button>
+  </div>
+</div>
+
+{{/each}}
+{{/if}}
+
+<script src="/js/editPost.js"></script>
+</body>
+</html>
