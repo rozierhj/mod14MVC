@@ -19,7 +19,7 @@ dashboardButton.addEventListener('click', async () => {
         window.location.href = `/dashboard/${currentUser1}`;
      }
      else{
-        window.location.href = `/dashboard`;
+        window.location.reload();
      }
     
  });

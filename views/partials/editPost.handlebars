@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Styled Page with Script</title>
-  <style>
+  {{!-- <style>
 
-#post-to-be-edited{
+.post-card{
 
     margin: 10px;
     display: flex;
@@ -28,7 +28,7 @@
 #edit-post-title{
   width: 100%;
 }
-#post-to-be-edited .card-body{
+.post-card .card-body{
   width: 100%;
 }
 #edit-post-body{
@@ -36,27 +36,32 @@
   border-top: 2px solid black;
 }
 
-  </style>
+#post-title-dab{
+  margin-bottom: 10px;
+}
+
+  </style> --}}
 </head>
 <body>
   
 
 {{#if editPost}}
 {{#each editPost as |post|}}
-<div id="post-to-be-edited" class="card">
+<div id="{{post.id}}" class="card post-card">
   <h5 id="edit-post-header" class="card-header">post by {{post.user_name}} on {{set_date post.post_date}}</h5>
   <div class="card-body">
-    <h5 id="edit-post-title" class="card-title">{{post.post_title}}</h5>
-    <p id="edit-post-body" class="card-text">{{post.blog_post}}</p>
-    <button id="edit-post-btn-dab" class="btn btn-primary">Edit</button>
+      <div class="mb-3">
+      <input id="post-title-dab" class="form-control" type="text" aria-label="default input example" value="{{post.post_title}}">
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{post.blog_post}}</textarea>
+      </div>
+    <button id="save-post-btn-dab" class="btn btn-primary">Save</button>
     <button id="delete-post-btn-dab" class="btn btn-primary">Delete</button>
     <button id="close-post-page-dab" class="btn btn-primary">Close</button>
   </div>
 </div>
-
 {{/each}}
 {{/if}}
 
-<script src="/js/editPost.js"></script>
+{{!-- <script src="/js/editPost.js"></script> --}}
 </body>
 </html>

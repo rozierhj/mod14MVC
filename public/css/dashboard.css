@@ -1,60 +1,86 @@
+/* style for the dashboard page */
+
+/* styles for basic page */
 body{
     background-size: cover;
 }
-.blog-post-dashboard{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    width: 80%;
-}
-#my-post-card-body{
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.blog-post-dashboard h5{
-width: 80%;
-margin-left: 5px;
-}
-
-#my-post-card{
-    margin: 10px;
-}
-
-.post-comment-dashboard{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    width: 80%;
-}
-
-#my-comment-card-body{
-    padding: 5px;
+main{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 100%;
+    z-index: 1;
+
 }
-
-.post-comment-dashboard h5{
-    width: 60%;
-    margin-left: 5px;
-    }
-
-    #my-comment-card{
-        margin: 10px;
-    }
-
 #dashboard-btn{
     display: flex;
     align-items: center;
     justify-content: center;
 }
+.card-header{
+    width: 100%;
+}
+
+/* styles for the individual post card pop-up */
+#post-title-dab{
+    margin-bottom: 10px;
+  }
+  #edit-post-header{
+    width: 100%;
+    font-size: 16px;
+  }
+  .post-card .card-body{
+    width: 100%;
+  }
+  .post-card{
+
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:baseline;
+    align-items: center;
+    margin-bottom: 5px;
+    width: 1000px;
+    padding: 10px;
+    z-index: 1000;
+    position:absolute;
+    backdrop-filter: blur(10px);
+    height:auto;
+}
+
+/* styles for  all posts in the My Posts card*/
+.blog-post-dashboard{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+}
+.my-post-card-body{
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.blog-post-dashboard h5{
+/* width: 80%; */
+margin-left: 5px;
+background-color: white !important;
+border: 0px;
+}
+#my-post-card{
+    margin: 10px;
+    width: 80%;
+}
+.post-card-data{
+    font-size: 16px;
+    text-align: right;
+}
+.post-card-header:hover{
+    cursor: pointer;
+}
+
+
+
 
