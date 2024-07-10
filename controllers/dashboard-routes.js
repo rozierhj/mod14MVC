@@ -62,11 +62,11 @@ router.get('/:user_name/newpost',async (req, res) => {
             }
         });
 
-        const posts = allPosts.map(post => post.get({plain: true}));
+        const posts = allPosts.map(post => post.get({plain: true, }));
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('dashboard',{posts});
+        res.render('dashboard',{posts, showContent:true});
 
     }catch(err){
         res.status(500).json(err);

@@ -22,10 +22,19 @@
             });
     
             const data = await response.json();
-
-            
     
             console.log(data);
+
+            const location = window.location.href;
+
+            if(location.includes('homepage')){
+                window.location.href = '/homepage'
+            }
+            else{
+                window.location.href = `/dashboard/${currentUser}`;
+            }
+
+
         }
         catch(err){
             console.error(err);
@@ -34,7 +43,16 @@
 
     closePostBtn.addEventListener('click', ()=>{
 
-        window.location.href = '/homepage';
+        const location = window.location.href;
+
+        if(location.includes('homepage')){
+            window.location.href = '/homepage'
+        }
+        else{
+            window.location.href = `/dashboard/${currentUser}`;
+        }
 
     });
+
+
 

@@ -21,10 +21,10 @@ main{
 }
 
 /* styles for the individual post card pop-up */
-#post-title-dab{
+#post-title-dab, #new-post-title{
     margin-bottom: 10px;
   }
-  #edit-post-header{
+  #edit-post-header, #new-post-header{
     width: 100%;
     font-size: 16px;
   }
