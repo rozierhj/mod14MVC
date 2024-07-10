@@ -3,8 +3,15 @@ const dashboardButton = document.getElementById('dashboard-button');
 const homeButton = document.getElementById('home-button');
 const loginButton = document.getElementById('login-button');
 const logoutButton = document.getElementById('logout-button');
-const poster1 = JSON.parse(sessionStorage.getItem('user'));
-const currentUser1 = poster1.username;
+const poster = JSON.parse(sessionStorage.getItem('user'));
+document.addEventListener('DOMContentLoaded', async function () {
+    // window.scrollTo(0, document.body.scrollHeight);
+    const userID = await getUserID(currentUser);
+alert(userID);
+});
+const currentUser = poster.username;
+
+
 
 
 pageButton.addEventListener('click', () => {
@@ -13,10 +20,11 @@ pageButton.addEventListener('click', () => {
 });
 dashboardButton.addEventListener('click', async () => {
     // alert('you are in login.js');
-    const userID = await  getUserID(currentUser1);
+    const userID = await  getUserID(currentUser);
+    //alert(userID);
 
      if(userID > 0){
-        window.location.href = `/dashboard/${currentUser1}`;
+        window.location.href = `/dashboard/${currentUser}`;
      }
      else{
         window.location.reload();

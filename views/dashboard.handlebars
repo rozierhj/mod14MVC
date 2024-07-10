@@ -9,13 +9,13 @@
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
 </head>
 {{>primary-header}}
-{{>modals}}
 
 <main>
 
 <header id="dashboard-btn">
     <button id="make-post" type="button" class="btn btn-primary btn-lg">New Post</button>
 </header>
+{{>createPost}}
 {{>editPost}}
 
 <div id="my-post-card" class="card ">
@@ -53,14 +53,8 @@
   </div>
 </div> --}}
 
-
 </main>
 
-
-
-
-<script src="/js/blogContent.js"></script>
-<script src="/js/comments.js"></script>
-<script src="/js/comments_db.js"></script>
 <script src="/js/dashboard.js"></script>
-<script src="/js/editPost.js"></script>
+{{!-- <script src="/js/script.js"></script> --}}
+

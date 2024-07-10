@@ -1,0 +1,17 @@
+{{#ifEqual showContent true}}
+<div id="new-comment" class="card post-card">
+  <h5 id="new-comment-header" class="card-header">Create Post</h5>
+  <div class="card-body">
+      <div class="mb-3">
+      {{!-- <input id="new-comment-title" class="form-control" type="text" aria-label="default input example" placeholder="Create post title..."> --}}
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Begin Comment..."></textarea>
+      </div>
+    <button id="save-new-comment" class="btn btn-primary">Save</button>
+    <button id="close-new-comment" class="btn btn-primary">Close</button>
+  </div>
+</div>
+{{else}}
+<div></div>
+{{/ifEqual}}
+
+<script src="/js/newPost.js"></script>

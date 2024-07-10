@@ -1,7 +1,7 @@
 async function addPost(){
 
-    const blogText = document.getElementById('blog-text');
-    const blogTitle = document.getElementById('blog-title');
+    const blogText = document.getElementById('exampleFormControlTextarea1');
+    const blogTitle = document.getElementById('new-post-title');
 
 
     try{

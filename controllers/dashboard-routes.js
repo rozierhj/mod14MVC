@@ -51,6 +51,29 @@ router.get('/:user_name',async (req, res) => {
 
 });
 
+router.get('/:user_name/newpost',async (req, res) => {
+
+    try{
+
+        const allPosts = await Post.findAll({
+            attributes:['id','blog_post','post_title','post_date','user_name'],
+            where:{
+                user_name:req.params.user_name
+            }
+        });
+
+        const posts = allPosts.map(post => post.get({plain: true}));
+
+        posts.sort((a, b) => b.id - a.id);
+
+        res.render('dashboard',{posts});
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+});
+
 router.get('/:post_id',async (req, res) => {
 
     try{
@@ -123,5 +146,30 @@ router.get('/:user_name/:post_id',async (req, res) => {
     }
 
 });
+
+// router.get('/:user_name', async (req, res) =>{
+
+//     console.log('ggggggggggggggggggggggggggggggggggggggggggggg');
+//     try{
+
+//         const allPosts = await Post.findAll({
+//             attributes:['id','blog_post','post_title','post_date','user_name'],
+//             where:{
+//                 user_name:req.params.user_name
+//             }
+//         });
+
+//         const posts = allPosts.map(post => post.get({plain: true}));
+
+//         posts.sort((a, b) => b.id - a.id);
+
+//         console.log('we did it 666666666666666666666666666666666');
+//         res.render('dashboard',{posts});
+
+//     }catch(err){
+//         res.status(500).json(err);
+//     }
+
+// });
 
 module.exports = router;

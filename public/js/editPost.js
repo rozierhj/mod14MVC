@@ -4,19 +4,18 @@
     const saveBtnDab = document.getElementById('save-post-btn-dab');
     const blogPost = document.getElementById('exampleFormControlTextarea1');
     const blogTitle = document.getElementById('post-title-dab');
-    const allPosts = document.getElementsByClassName('post-card-header');
-
-
 
 
 if(closeBtnDab !== null){
 
+    //close the view of the selected post
     closeBtnDab.addEventListener('click',()=>{
     
         window.location.href = `/dashboard/${currentUser}`;
     
     });
     
+    //delete the selected post
     deleteBtnDab.addEventListener('click', async ()=>{
     
         const postCard = document.querySelector('.post-card');
@@ -47,6 +46,7 @@ if(closeBtnDab !== null){
     
     });
     
+    //save any changes made to the selected post
     saveBtnDab.addEventListener('click', async ()=>{
     
         const postCard = document.querySelector('.post-card');
@@ -84,25 +84,4 @@ if(closeBtnDab !== null){
 }
 
 
-Array.from(allPosts).forEach(post => {
-    console.log(post);
-    post.addEventListener('click', async (event)=>{
 
-        const postClicked = event.target;
-        const parentPost = postClicked.closest('.blog-post-dashboard');
-        const postID = parentPost.id;
-
-        try{
-
-            await fetch(`/dashboard/${currentUser}/${postID}`);
-
-            window.location.href = `/dashboard/${currentUser}/${postID}`;
-
-        }
-        catch(err){
-
-            console.error(err);
-        }
-        
-    });
-});

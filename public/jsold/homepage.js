@@ -11,28 +11,24 @@ const commentButton = document.getElementsByClassName('comment-button');
 const saveCommentButton = document.getElementById('save-comment');
 const saveEditButton = document.getElementById('edit-save-post');
 
-postButton.addEventListener('click', () => {
+postButton.addEventListener('click', async () => {
 
-    const theModal = new bootstrap.Modal(document.getElementById('postModal'), {});
-    theModal.show();
+    try{
+        await fetch('/homepage/newPost');
+        window.location.href = '/homepage/newPost';
+        console.log('success');
+
+    }
+    catch(err){
+        console.error(err);
+    }
 
 });
 
 savePostButton.addEventListener('click',async ()=>{
 
-    const modalToDelete = document.getElementById('postModal');
-
-    alert(currentUser);
+    
     await addPost();
-
-    const openModal = bootstrap.Modal.getInstance(document.getElementById('postModal'));
-
-    openModal.hide();
-    openModal.dispose();
-
-    modalToDelete.querySelectorAll('input[type="text"]').forEach(input => input.value = '');
-    modalToDelete.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-    window.location.href = '/homepage';
 
 });
 

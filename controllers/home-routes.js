@@ -14,7 +14,27 @@ router.get('/',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts});
+        res.render('homepage',{posts, showContent:false});
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+});
+
+router.get('/newPost',async (req, res) => {
+
+    try{
+
+        const allPosts = await Post.findAll({
+            attributes:['id','blog_post','post_title','post_date','user_name'],
+        });
+
+        const posts = allPosts.map(post => post.get({plain: true}));
+
+        posts.sort((a, b) => b.id - a.id);
+
+        res.render('homepage',{posts, showContent:true});
 
     }catch(err){
         res.status(500).json(err);

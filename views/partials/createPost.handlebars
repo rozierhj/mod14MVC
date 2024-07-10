@@ -1,0 +1,17 @@
+{{#ifEqual showContent true}}
+<div id="new-post" class="card post-card">
+  <h5 id="new-post-header" class="card-header">Create Post</h5>
+  <div class="card-body">
+      <div class="mb-3">
+      <input id="new-post-title" class="form-control" type="text" aria-label="default input example" placeholder="Create post title...">
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Begin post..."></textarea>
+      </div>
+    <button id="save-new-post" class="btn btn-primary">Save</button>
+    <button id="close-new-post" class="btn btn-primary">Close</button>
+  </div>
+</div>
+<script src="/js/newPost.js"></script>
+{{else}}
+<div></div>
+{{/ifEqual}}
+

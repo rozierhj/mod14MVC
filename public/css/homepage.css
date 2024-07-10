@@ -1,8 +1,16 @@
-.blog-post{
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    width: 800px;
+/* General page styles */
+main{
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    z-index: 1;
+
+}
+
+body{
+    background-size: cover;
 }
 
 footer{
@@ -11,13 +19,26 @@ footer{
     justify-content: center;
 }
 
-/* .card-header:hover{
-    cursor: pointer;
-} */
+/* homepage post styles */
 
-body{
-    background-size: cover;
+.blog-post{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    width: 800px;
 }
+
+.card-header:hover{
+    cursor: pointer;
+}
+
+.post-header{
+
+    font-size: 16px !important;
+
+}
+
+/* pop-up comment styles */
 
 .post-comment{
 
@@ -54,80 +75,31 @@ body{
 
 }
 
-main{
+/* post pop-up styles */
 
+/* styles for the individual post card pop-up */
+#new-post-title{
+    margin-bottom: 10px;
+  }
+  #new-post-header{
+    width: 100%;
+    font-size: 16px;
+  }
+  .post-card .card-body{
+    width: 100%;
+  }
+  .post-card{
+
+    margin: 10px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    z-index: 1;
-
-}
-
-.post-header{
-
-    font-size: 16px !important;
-
-}
-
-#post-details{
-    width: 100%;
-    margin: 0;
-    padding: 5px;
-    border: 3px solid black;
-}
-#commentModal .mb-3{
-    width: 100%;
-}
-
-#post-details-header{
-    font-size: 16px !important;
-    background-color: lightgrey;
-    padding: 5px;
-    border-bottom: 2px solid darkgray;
-}
-
-#post-details-title{
-    font-weight: bolder;
-}
-
-#commentModal{
-    width: 100% !important;
-}
-
-#commentModal .modal-content{
-
-    background-color: lightblue;
-    height: 500px !important;
-    width: 1000px !important;
-
-}
-#commentModal .modal-dialog{
-
-    width: 1000px !important;
-    height: 100% !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-#commentModal .modal-body{
-
-    width: 1000px !important;
-    height: 100% !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content:baseline;
-
-}
-/* #commentModalGroup{
-    display: flex;
     align-items: center;
-   justify-content: center;
+    margin-bottom: 5px;
+    width: 1000px;
+    padding: 10px;
+    z-index: 1000;
+    position:absolute;
+    backdrop-filter: blur(10px);
+    height:auto;
 }
-
-#commentModalGroup .modal-content{
-    width: 800px;
-} */

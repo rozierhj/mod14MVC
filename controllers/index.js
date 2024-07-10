@@ -10,6 +10,7 @@ router.use('/', loginRoutes);
 router.use('/api', apiRoutes);
 router.use('/homepage',homeRoutes);
 router.use('/dashboard',dashboardRoutes);
+router.use('/dashboard/rozier',dashboardRoutes);
 router.use('/page',pageRoutes);
 router.use('/login',loginRoutes);
 router.use('/logout',logoutRoutes);

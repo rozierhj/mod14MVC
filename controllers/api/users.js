@@ -61,6 +61,7 @@ const { User } = require('../../models');
 // });
 
 router.get('/:user_name', async(req, res) =>{
+    console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkklllllllllllllllllllll');
   
     try{
         const user = await User.findOne({

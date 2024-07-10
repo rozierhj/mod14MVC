@@ -1,5 +1,3 @@
-const poster = JSON.parse(sessionStorage.getItem('user'));
-const currentUser = poster.username;
 
 async function getUserID(user_name){
 
