@@ -1,0 +1,21 @@
+{{#if otherPost}}
+<div id="postWcomment">
+{{#each otherPost as |post|}}
+<div id="{{post.id}}" class="card post-card-w-comment">
+  <h5 id="edit-post-header" class="card-header">post by {{post.user_name}} on {{set_date post.post_date}}</h5>
+  <div id="single-post-hp" class="card-body">
+      <div class="mb-3">
+      <input id="post-title-dab" class="form-control" type="text" aria-label="default input example" value="{{post.post_title}}">
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{post.blog_post}}</textarea>
+      </div>
+    <button id="save-post-btn-dab" class="btn btn-primary">Save</button>
+    <button id="delete-post-btn-dab" class="btn btn-primary">Delete</button>
+    <button id="close-post-page-dab" class="btn btn-primary">Close</button>
+  </div>
+</div>
+{{/each}}
+{{> allComments}}
+</div>
+{{/if}}
+
+<script src="/js/editPost.js"></script>

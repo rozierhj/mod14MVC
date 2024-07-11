@@ -65,19 +65,16 @@ router.get('/:post_id',async (req, res) => {
                 post_id: postID
             }
         })
-        if(allComments.length < 1){
-            res.json({response:false});
-        }
-        else{
-
             const posts = allPosts.map(post => post.get({plain: true}));
             posts.sort((a, b) => b.id - a.id);
             const comments = allComments.map(comment =>comment.get({plain: true}));
-            comments.sort((a, b) => a.id - b.id);
+            comments.sort((a, b) => b.id - a.id);
             const otherPost = otherPosts.map(post=>post.get({plain: true}));
+            console.log(otherPost)
+            console.log(comments);
             res.render('homepage',{posts, comments, otherPost});
             //res.status(200).json(editPost);
-        }
+        
 
     }catch(err){
         res.status(500).json(err);

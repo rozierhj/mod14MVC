@@ -28,7 +28,7 @@
             const location = window.location.href;
 
             if(location.includes('homepage')){
-                window.location.href = '/homepage'
+                window.location.href = '/homepage';
             }
             else{
                 window.location.href = `/dashboard/${currentUser}`;
@@ -46,7 +46,7 @@
         const location = window.location.href;
 
         if(location.includes('homepage')){
-            window.location.href = '/homepage'
+            window.location.href = '/homepage';
         }
         else{
             window.location.href = `/dashboard/${currentUser}`;

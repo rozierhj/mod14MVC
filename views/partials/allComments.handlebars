@@ -1,0 +1,18 @@
+{{#if comments}}
+
+<div id="comments">
+
+    {{#each comments as |aComment|}}
+       
+    <div id="comment-{{aComment.id}}" class="card post-comment">
+        <h5 id="comment-header-{{aComment.id}}" class="card-header post-header">comment by {{user_name}} on {{set_date comment_date}}</h5>
+        <div class="card-body">
+        <p class="card-text">{{aComment.post_comment}}</p>
+        <button id="comment-delete-{{aComment.id}}" class="btn btn-primary delete-comment">Delete</button>
+        <button id="comment-edit-{{aComment.id}}" class="btn btn-primary edit-comment">Edit</button>
+    </div>
+</div>
+    {{/each}}
+
+</div>
+{{/if}}

@@ -5,13 +5,19 @@
     const blogPost = document.getElementById('exampleFormControlTextarea1');
     const blogTitle = document.getElementById('post-title-dab');
 
-
 if(closeBtnDab !== null){
 
     //close the view of the selected post
     closeBtnDab.addEventListener('click',()=>{
     
-        window.location.href = `/dashboard/${currentUser}`;
+        const location = window.location.href;
+
+        if(location.includes('homepage')){
+            window.location.href = '/homepage';
+        }
+        else{
+            window.location.href = `/dashboard/${currentUser}`;
+        }
     
     });
     
@@ -33,8 +39,14 @@ if(closeBtnDab !== null){
             const data = await response.json();
     
             console.log(data);
+            const location = window.location.href;
     
-            window.location.href = `/dashboard/${currentUser}`;
+            if(location.includes('homepage')){
+                window.location.href = '/homepage';
+            }
+            else{
+                window.location.href = `/dashboard/${currentUser}`;
+            }
     
         }
         catch(err){
@@ -68,8 +80,14 @@ if(closeBtnDab !== null){
             const data = await response.json();
     
             console.log(data);
+            const location = window.location.href;
     
-            window.location.href = `/dashboard/${currentUser}`;
+            if(location.includes('homepage')){
+                window.location.href = '/homepage';
+            }
+            else{
+                window.location.href = `/dashboard/${currentUser}`;
+            }
     
         }
         catch(err){

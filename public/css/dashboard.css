@@ -1,16 +1,6 @@
 /* style for the dashboard page */
 
 /* styles for basic page */
-body{
-    background-size: cover;
-}
-main{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1;
-
-}
 #dashboard-btn{
     display: flex;
     align-items: center;
@@ -19,7 +9,6 @@ main{
 .card-header{
     width: 100%;
 }
-
 /* styles for the individual post card pop-up */
 #post-title-dab, #new-post-title{
     margin-bottom: 10px;
@@ -79,6 +68,12 @@ border: 0px;
 }
 .post-card-header:hover{
     cursor: pointer;
+}
+.post-card-right{
+    justify-content: right !important;
+}
+.post-card-left{
+    justify-content: left !important;
 }
 
 
