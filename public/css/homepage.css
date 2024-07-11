@@ -35,6 +35,9 @@
 }
 
 /* pop-up comment styles */
+.form-control{
+    margin-bottom: 16px;
+}
 
 .post-comment{
 
@@ -50,7 +53,7 @@
     justify-content:baseline;
     align-items: center;
     margin-bottom: 5px;
-    width: 1000px;
+    width: 800px;
     padding: 10px;
     z-index: 1000;
     /* position:absolute; */
@@ -74,7 +77,6 @@
 /* post pop-up styles */
 
 /* styles for the individual post card pop-up */
-
 
 #post-title-dab, #new-post-title{
     margin-bottom: 10px;

@@ -1,3 +1,5 @@
+{{#if otherPost}}
+{{else}}
 {{#ifEqual showContent true}}
 <div id="new-post" class="card post-card">
   <h5 id="new-post-header" class="card-header">Create Post</h5>
@@ -13,4 +15,5 @@
 <script src="/js/newPost.js"></script>
 {{else}}
 {{/ifEqual}}
+{{/if}}
 
