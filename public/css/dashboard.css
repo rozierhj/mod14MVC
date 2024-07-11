@@ -31,9 +31,12 @@
     width: 1000px;
     padding: 10px;
     z-index: 1000;
-    position:absolute;
+    /* position:absolute; */
     backdrop-filter: blur(10px);
     height:auto;
+}
+.edit-post-cards{
+       position:absolute;
 }
 
 /* styles for  all posts in the My Posts card*/

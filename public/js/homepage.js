@@ -12,6 +12,7 @@ const homePostHeader = document.getElementsByClassName('post-header');
 // const saveCommentButton = document.getElementById('save-comment');
 // const saveEditButton = document.getElementById('edit-save-post');
 
+//button to create new posts
 homePostButton.addEventListener('click', async () => {
 
     try{
@@ -26,15 +27,11 @@ homePostButton.addEventListener('click', async () => {
 
 });
 
-// savePostButton.addEventListener('click',async ()=>{
+// set event for headers for every post
+Array.from(homePostHeader).forEach(postHeader => {
 
-    
-//     await addPost();
-
-// });
-
-Array.from(homePostHeader).forEach(button => {
-    button.addEventListener('click', async (event)=>{
+    //event to open a post with its comments
+    postHeader.addEventListener('click', async (event)=>{
 
         const homeHeadersClicked = event.target;
         const homeSelectedPost = homeHeadersClicked.closest('.blog-post');
