@@ -6,7 +6,7 @@
   <div id="single-post-hp" class="card-body">
       <div class="mb-3">
       <input id="post-title-dab" class="form-control" type="text" aria-label="default input example" value="{{post.post_title}}">
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{post.blog_post}}</textarea>
+      <textarea class="form-control new-comment-text" id="exampleFormControlTextarea1" rows="3">{{post.blog_post}}</textarea>
       </div>
     <button id="save-post-btn-dab" class="btn btn-primary">Save</button>
     <button id="delete-post-btn-dab" class="btn btn-primary">Delete</button>
@@ -16,6 +16,7 @@
 </div>
 {{/each}}
 {{> createComment}}
+{{> userComment}}
 {{> allComments}}
 </div>
 <script src="/js/editPost.js"></script>

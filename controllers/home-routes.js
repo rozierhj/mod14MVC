@@ -85,13 +85,22 @@ router.get('/:user_name/:post_id',async (req, res) => {
                 post_id: postID
             }
         })
+        const userComments = await Comment.findAll({
+            attributes: ['id','post_comment','comment_date','post_id','user_name'],
+            where:{
+                post_id: postID,
+                user_name: userName
+            }
+        })
             const posts = allPosts.map(post => post.get({plain: true}));
             posts.sort((a, b) => b.id - a.id);
             const comments = allComments.map(comment =>comment.get({plain: true}));
             comments.sort((a, b) => b.id - a.id);
             const otherPost = otherPosts.map(post=>post.get({plain: true}));
+            const userComment = userComments.map(comment =>comment.get({plain: true}));
+            userComment.sort((a, b) => b.id - a.id);
 
-            res.render('homepage',{posts, comments, otherPost});
+            res.render('homepage',{posts, comments, otherPost, userComment});
             //res.status(200).json(editPost);
         
 
@@ -100,6 +109,7 @@ router.get('/:user_name/:post_id',async (req, res) => {
     }
 
 });
+
 router.get('/:user_name/:post_id/myPost',async (req, res) => {
 
     try{
@@ -124,13 +134,23 @@ router.get('/:user_name/:post_id/myPost',async (req, res) => {
                 post_id: postID
             }
         })
+        const userComments = await Comment.findAll({
+            attributes: ['id','post_comment','comment_date','post_id','user_name'],
+            where:{
+                post_id: postID,
+                user_name: userName
+            }
+        })
             const posts = allPosts.map(post => post.get({plain: true}));
             posts.sort((a, b) => b.id - a.id);
             const comments = allComments.map(comment =>comment.get({plain: true}));
             comments.sort((a, b) => b.id - a.id);
+            const userComment = userComments.map(comment =>comment.get({plain: true}));
+            userComment.sort((a, b) => b.id - a.id);
             const ourUserPost = ourUserPosts.map(post=>post.get({plain: true}));
+            
 
-            res.render('homepage',{posts, comments, ourUserPost});
+            res.render('homepage',{posts, comments, ourUserPost, userComment});
             //res.status(200).json(editPost);
         
 

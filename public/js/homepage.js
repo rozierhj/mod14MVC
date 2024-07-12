@@ -47,12 +47,12 @@ Array.from(homePostHeader).forEach(postHeader => {
 
             if(postUser === currentUser){
 
-                await fetch(`/homepage/${currentUser}/${postID}`);
+                await fetch(`/homepage/${currentUser}/${postID}/myPost`);
                 window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
             }
 
             else{
-                await fetch(`/homepage/${currentUser}/${postID}/myPost`);
+                await fetch(`/homepage/${currentUser}/${postID}`);
                 window.location.href = `/homepage/${currentUser}/${postID}`;
             }
 

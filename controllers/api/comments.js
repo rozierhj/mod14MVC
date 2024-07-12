@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {Comment, Post} = require('../../models');
 
-router.post('/:user_name/add', async(req, res)=>{
+router.post('/add', async(req, res)=>{
 
     try{
 
