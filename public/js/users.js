@@ -15,3 +15,22 @@ async function getUserID(user_name){
     }
 
 }
+
+    async function confirmUser(postOrCommentOwner, currentUser){
+
+    let allowEdit = false;
+
+    if(postOrCommentOwner === currentUser){
+
+        allowEdit = true;
+
+    }
+    else{
+
+        allowEdit = false;
+
+    }
+
+    return allowEdit;
+
+}

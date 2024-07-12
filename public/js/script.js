@@ -24,7 +24,7 @@ dashboardButton.addEventListener('click', async () => {
     const userID = await  getUserID(currentUser);
     //alert(userID);
 
-     if(userID > 0){
+     if(userID > 0 || (currentUser !== null && currentUser !== undefined && currentUser !== '')){
         window.location.href = `/dashboard/${currentUser}`;
      }
      else{
@@ -34,7 +34,7 @@ dashboardButton.addEventListener('click', async () => {
  });
  homeButton.addEventListener('click', () => {
     // alert('you are in login.js');
-     window.location.href = '/homepage';
+     window.location.href = `/homepage/${currentUser}`;
  });
  logoutButton.addEventListener('click', () => {
     // alert('you are in login.js');

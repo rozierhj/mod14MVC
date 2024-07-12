@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {Comment, Post} = require('../../models');
 
-router.post('/add', async(req, res)=>{
+router.post('/:user_name/add', async(req, res)=>{
 
     try{
 
@@ -22,7 +22,7 @@ router.post('/add', async(req, res)=>{
 
 });
 
-router.put('/edit/:id', async(req, res)=>{
+router.put('/:user_name/edit/:id', async(req, res)=>{
 
 
     try{
@@ -42,7 +42,7 @@ router.put('/edit/:id', async(req, res)=>{
 
 });
 
-router.get('/get/:id', async(req, res)=>{
+router.get('/:user_name/get/:id', async(req, res)=>{
 
 
     try{
@@ -60,7 +60,7 @@ router.get('/get/:id', async(req, res)=>{
 
 });
 
-router.delete('/delete/:id', async(req, res)=>{
+router.delete('/:user_name/delete/:id', async(req, res)=>{
 
     try{
 
