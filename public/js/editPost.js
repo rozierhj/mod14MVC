@@ -4,6 +4,7 @@
     const saveBtnDab = document.getElementById('save-post-btn-dab');
     const blogPost = document.getElementById('exampleFormControlTextarea1');
     const blogTitle = document.getElementById('post-title-dab');
+    const deleteComment = document.getElementsByClassName('delete-comment');
 
 if(closeBtnDab !== null){
 
@@ -106,6 +107,56 @@ if(closeBtnDab !== null){
         });
 
     }
+
+    if(deleteComment !== null){
+
+        Array.from(deleteComment).forEach(deleteComBtn =>{
+
+            deleteComBtn.addEventListener('click', async (event) =>{
+
+                try{
+                    const postCard = document.querySelector('.post-card');
+                    const postID = postCard.id;
+                    const deleteCom = event.target;
+                    const commentName = deleteCom.id;
+                    const commID = commentName.replace('comment-delete-','');
+    
+                    const response = await fetch(`/api/comment/delete/${commID}`, {
+                        method: 'DELETE',
+                        headers: {
+                        'Content-Type': 'application/json',
+                        },
+                    })
+            
+                    const data = await response.json();
+            
+                    console.log(data);
+
+                    const pageResponse = await fetch(`/api/post/${postID}`);
+
+                    const pageData = await pageResponse.json();
+
+                    const postUser = pageData.user_name;
+
+                    if(postUser === currentUser){
+                    window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+                    }
+                    else{
+                    window.location.href = `/homepage/${currentUser}/${postID}`;
+                    }
+
+                }
+                catch(err){
+                    console.error(err);
+                }
+
+            });
+
+
+        });
+
+    }
+
 
 }
 

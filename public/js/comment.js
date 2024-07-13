@@ -1,6 +1,8 @@
 const newComment = document.getElementById('comment-post-page-dab');
 const currentPost = document.getElementById('postWcomment');
 const saveNewComment = document.getElementById('comment-create-new');
+const closeComment = document.getElementById('comment-delete-new');
+
 
 
 if(newComment!==null){
@@ -75,5 +77,39 @@ if(newComment!==null){
         }
 
     })
+
+    closeComment.addEventListener('click', async (event)=>{
+
+        try{
+
+
+            const postToComment = currentPost.querySelector('.post-card-w-comment');
+            const postID = postToComment.id;  
+            
+            const pageResponse = await fetch(`/api/post/${postID}`);
+    
+            const pageData = await pageResponse.json();
+    
+            const postUser = pageData.user_name;
+
+            if(postUser === currentUser){
+
+                window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+
+            }
+            else{
+                window.location.href = `/homepage/${currentUser}/${postID}`;
+            }
+    
+
+        }
+        catch(err){
+            console.error(err);
+        }
+
+
+    });
+
+
 
 }
