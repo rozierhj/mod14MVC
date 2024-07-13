@@ -22,7 +22,7 @@ router.post('/add', async(req, res)=>{
 
 });
 
-router.put('/:user_name/edit/:id', async(req, res)=>{
+router.put('/edit/:id', async(req, res)=>{
 
 
     try{

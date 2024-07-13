@@ -21,7 +21,7 @@ pageButton.addEventListener('click', () => {
 });
 dashboardButton.addEventListener('click', async () => {
     // alert('you are in login.js');
-    const userID = await  getUserID(currentUser);
+    //const userID = await  getUserID(currentUser);
     //alert(userID);
 
      if(userID > 0 || (currentUser !== null && currentUser !== undefined && currentUser !== '')){

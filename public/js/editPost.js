@@ -5,6 +5,7 @@
     const blogPost = document.getElementById('exampleFormControlTextarea1');
     const blogTitle = document.getElementById('post-title-dab');
     const deleteComment = document.getElementsByClassName('delete-comment');
+    const editComment = document.getElementsByClassName('edit-comment');
 
 if(closeBtnDab !== null){
 
@@ -144,6 +145,35 @@ if(closeBtnDab !== null){
                     else{
                     window.location.href = `/homepage/${currentUser}/${postID}`;
                     }
+
+                }
+                catch(err){
+                    console.error(err);
+                }
+
+            });
+
+
+        });
+
+    }
+
+    if(editComment !== null){
+
+        Array.from(editComment).forEach(editComBtn =>{
+
+            editComBtn.addEventListener('click', async (event) =>{
+
+                try{
+                    const postCard = document.querySelector('.post-card');
+                    const postID = postCard.id;
+                    const editCom = event.target;
+                    const commentName = editCom.id;
+                    const commID = commentName.replace('comment-edit-','');
+    
+                    await fetch(`/homepage/${currentUser}/${postID}/${commID}`);
+
+                    window.location.href = `/homepage/${currentUser}/${postID}/${commID}`;
 
                 }
                 catch(err){

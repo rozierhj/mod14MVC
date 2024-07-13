@@ -1,0 +1,18 @@
+{{#if editComment}}
+
+<div id="comments">
+
+    {{#each editComment as |aComment|}}
+       
+    <div id="comment-created" class="card post-comment">
+        <h5 id="comment-header-{{aComment.id}}" class="card-header post-header comment-header">comment by {{user_name}} on {{set_date comment_date}}</h5>
+        <div class="card-body">
+        <textarea class="form-control edit-this-comment" id="exampleFormControlTextarea1" rows="3">{{aComment.post_comment}}</textarea>
+        <button id="comment-delete-{{aComment.id}}" class="btn btn-primary close-edit-comment">Close</button>
+        <button id="comment-edit-{{aComment.id}}" class="btn btn-primary save-edit-comment">Save</button>
+    </div>
+</div>
+    {{/each}}
+
+</div>
+{{/if}}
