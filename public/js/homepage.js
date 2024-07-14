@@ -19,22 +19,7 @@ homePostButton.addEventListener('click', async () => {
 
 });
 
-if(loginButton !== null){
 
-    loginButton.addEventListener('click', async () =>{
-
-        try{
-            await fetch('/homepage/login');
-            window.location.href = '/homepage/login';
-
-        }
-        catch(err){
-            console.error(err);
-        }
-
-    });
-
-}
 
 // set event for headers for every post
 Array.from(homePostHeader).forEach(postHeader => {

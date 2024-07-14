@@ -26,7 +26,6 @@ if(createAccount !== null){
 if(createMyAccount !== null){
 
     createMyAccount.addEventListener('click', async () =>{
-        alert(createUsername.value);
         const response = await fetch('/api/users/add',{
             method: 'POST',
             headers:{
@@ -43,7 +42,9 @@ if(createMyAccount !== null){
 
         console.log(data);
 
-        window.location.href = '/dashboard';
+       await fetch('/dashboard');
+
+       window.location.href = '/dashboard';
 
     });
 

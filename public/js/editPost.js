@@ -15,10 +15,10 @@ if(closeBtnDab !== null){
         const location = window.location.href;
 
         if(location.includes('homepage')){
-            window.location.href = `/homepage/${currentUser}`;
+            window.location.href = `/homepage`;
         }
         else{
-            window.location.href = `/dashboard/${currentUser}`;
+            window.location.href = `/dashboard`;
         }
     
     });
@@ -46,10 +46,10 @@ if(closeBtnDab !== null){
                 const location = window.location.href;
         
                 if(location.includes('homepage')){
-                    window.location.href = `/homepage/${currentUser}`;
+                    window.location.href = `/homepage`;
                 }
                 else{
-                    window.location.href = `/dashboard/${currentUser}`;
+                    window.location.href = `/dashboard`;
                 }
         
             }
@@ -91,10 +91,10 @@ if(closeBtnDab !== null){
                 const location = window.location.href;
         
                 if(location.includes('homepage')){
-                    window.location.href = `/homepage/${currentUser}`;
+                    window.location.href = `/homepage`;
                 }
                 else{
-                    window.location.href = `/dashboard/${currentUser}`;
+                    window.location.href = `/dashboard`;
                 }
         
             }

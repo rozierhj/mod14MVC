@@ -8,7 +8,7 @@ router.post('/add', async(req, res)=>{
             blog_post: req.body.blog_post,
             post_title: req.body.post_title,
             post_date: new Date(),
-            user_name: req.body.user_name,
+            user_name: req.session.user_name,
 
         });
         res.status(200).json(newPost);

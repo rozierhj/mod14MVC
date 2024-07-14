@@ -7,10 +7,9 @@ const allPosts = document.getElementsByClassName('post-card-header');
 postButton.addEventListener('click', async () =>{
 
     try{
-        
-       await fetch(`/dashboard/${currentUser}/newpost`);
+       await fetch('/dashboard/newpost');
 
-       window.location.href = `/dashboard/${currentUser}/newpost`;
+       window.location.href = `/dashboard/newpost`;
 
     }
     catch(err){
@@ -22,6 +21,7 @@ postButton.addEventListener('click', async () =>{
 // get one post from the dashboard to view
 Array.from(allPosts).forEach(post => {
 
+    
     post.addEventListener('click', async (event)=>{
 
         const postClicked = event.target;
@@ -30,17 +30,21 @@ Array.from(allPosts).forEach(post => {
 
         try{
 
-            await fetch(`/dashboard/${currentUser}/${postID}`);
+            await fetch(`/dashboard/${postID}`);
 
-            window.location.href = `/dashboard/${currentUser}/${postID}`;
+            window.location.href = `/dashboard/${postID}`;
 
         }
         catch(err){
 
             console.error(err);
         }
+
+        
         
     });
+
+    
 });
 
 

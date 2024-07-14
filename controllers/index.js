@@ -9,7 +9,6 @@ const logoutRoutes = require('./logout-routes.js');
 router.use('/api', apiRoutes);
 router.use('/homepage',homeRoutes);
 router.use('/dashboard',dashboardRoutes);
-router.use('/dashboard/rozier',dashboardRoutes);
 router.use('/login',loginRoutes);
 router.use('/logout',logoutRoutes);
 

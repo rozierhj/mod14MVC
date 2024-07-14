@@ -9,15 +9,11 @@ router.get('/',async (req, res) => {
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
         });
-        const allComments = await Comment.findAll({
-            attributes: ['id','post_comment','comment_date','post_id','user_name'],
-        })
 
         const posts = allPosts.map(post => post.get({plain: true}));
         posts.sort((a, b) => b.id - a.id);
-        const comments = allComments.map(comment =>comment.get({plain: true}));
-        comments.sort((a, b) => b.id - a.id);
-        res.render('dashboard',{posts, comments});
+        
+        res.render('dashboard',{posts});
 
     }catch(err){
         res.status(500).json(err);
@@ -25,41 +21,43 @@ router.get('/',async (req, res) => {
 
 });
 
-router.get('/:user_name',async (req, res) => {
+// router.get('/:user_name',async (req, res) => {
+
+//     try{
+//          console.log('ggggggggggggggggggggggggggggggggggggggggggg');
+//         const allPosts = await Post.findAll({
+//             attributes:['id','blog_post','post_title','post_date','user_name'],
+//             where:{
+//                 user_name:req.params.user_name
+//             }
+//         });
+//         const allComments = await Comment.findAll({
+//             attributes: ['id','post_comment','comment_date','post_id','user_name'],
+//         })
+
+//         const posts = allPosts.map(post => post.get({plain: true}));
+//         posts.sort((a, b) => b.id - a.id);
+//         const comments = allComments.map(comment =>comment.get({plain: true}));
+//         comments.sort((a, b) => b.id - a.id);
+//         res.render('dashboard',{posts, comments});
+
+//     }catch(err){
+//         console.error('bad error');
+//         res.status(500).json(err);
+//     }
+
+// });
+
+router.get('/newpost',async (req, res) => {
+    
+    console.log('gbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
 
     try{
-        console.log('ggggggggggggggggggggggggggggggggggggggggggg');
+
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
             where:{
-                user_name:req.params.user_name
-            }
-        });
-        const allComments = await Comment.findAll({
-            attributes: ['id','post_comment','comment_date','post_id','user_name'],
-        })
-
-        const posts = allPosts.map(post => post.get({plain: true}));
-        posts.sort((a, b) => b.id - a.id);
-        const comments = allComments.map(comment =>comment.get({plain: true}));
-        comments.sort((a, b) => b.id - a.id);
-        res.render('dashboard',{posts, comments});
-
-    }catch(err){
-        console.error('bad error');
-        res.status(500).json(err);
-    }
-
-});
-
-router.get('/:user_name/newpost',async (req, res) => {
-
-    try{
-
-        const allPosts = await Post.findAll({
-            attributes:['id','blog_post','post_title','post_date','user_name'],
-            where:{
-                user_name:req.params.user_name
+                user_name:req.session.user_name
             }
         });
 
@@ -67,7 +65,7 @@ router.get('/:user_name/newpost',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('dashboard',{posts, showContent:true});
+        res.render('dashboard',{posts, newPost:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -75,6 +73,8 @@ router.get('/:user_name/newpost',async (req, res) => {
 
 });
 
+
+/*
 router.get('/:post_id',async (req, res) => {
 
     try{
@@ -92,25 +92,14 @@ router.get('/:post_id',async (req, res) => {
                     id: postID
                 }
         });
-        const allComments = await Comment.findAll({
-            attributes: ['id','post_comment','comment_date','post_id','user_name'],
-            where:{
-                post_id: postID
-            }
-        })
-        if(allComments.length < 1){
-            res.json({response:false});
-        }
-        else{
+
 
             const posts = allPosts.map(post => post.get({plain: true}));
             posts.sort((a, b) => b.id - a.id);
-            const comments = allComments.map(comment =>comment.get({plain: true}));
-            comments.sort((a, b) => b.id - a.id);
             const otherPost = otherPosts.map(post=>post.get({plain: true}));
-            res.render('dashboard',{posts, comments, otherPost});
+            res.render('dashboard',{posts, otherPost});
             //res.status(200).json(editPost);
-        }
+        
 
     }catch(err){
         res.status(500).json(err);
@@ -118,21 +107,22 @@ router.get('/:post_id',async (req, res) => {
 
 });
 
-router.get('/:user_name/:post_id',async (req, res) => {
+*/
+
+router.get('/:post_id',async (req, res) => {
 
     try{
-        console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
         const postID = req.params.post_id;
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
             where:{
-                user_name:req.params.user_name                }
+                user_name:req.session.user_name                }
             });
             const editPosts = await Post.findAll({
                 attributes:['id','blog_post','post_title','post_date','user_name'],
                 where:{
                     id: req.params.post_id,
-                    user_name:req.params.user_name
+                    user_name:req.session.user_name
                 }
             });
             
@@ -147,5 +137,6 @@ router.get('/:user_name/:post_id',async (req, res) => {
     }
 
 });
+
 
 module.exports = router;

@@ -1,7 +1,7 @@
 {{!-- create a new post tempalte --}}
-{{#if otherPost}}
-{{else}}
-{{#ifEqual showContent true}}
+{{!-- {{#if otherPost}} --}}
+{{!-- {{else}} --}}
+{{#ifEqual newPost true}}
 <div id="new-post" class="card post-card">
   <h5 id="new-post-header" class="card-header">Create Post</h5>
   <div class="card-body">
@@ -15,6 +15,7 @@
 </div>
 <script src="/js/newPost.js"></script>
 {{else}}
+<div></div>
 {{/ifEqual}}
-{{/if}}
+{{!-- {{/if}} --}}
 

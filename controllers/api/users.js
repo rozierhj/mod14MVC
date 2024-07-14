@@ -36,11 +36,11 @@ router.post('/add', async(req, res)=>{
         });
         console.log(newUser);
         req.session.save(() =>{
+            req.session.user_name = newUser.user_name;
             req.session.loggedIn = true;
-            req.session.user = newUser.get({plain: true});
             res.status(200).json(newUser);
         });
-        res.status(200).json(newPost);
+
 
     }catch(err){
         res.status(500).json(err);

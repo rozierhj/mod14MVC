@@ -17,20 +17,22 @@ dashboardButton.addEventListener('click', async () => {
     //const userID = await  getUserID(currentUser);
     // alert(userID);
     
-    if((currentUser !== null && currentUser !== undefined && currentUser !== '')){
-        // alert('you are in login.js');
-        window.location.href = `/dashboard/${currentUser}`;
-     }
-     else{
+    window.location.href = '/dashboard';
+    // if((currentUser !== null && currentUser !== undefined && currentUser !== '')){
+    //     // alert('you are in login.js');
+    //     window.location.href = `/dashboard/${currentUser}`;
+    //  }
+    //  else{
         
-        window.location.reload();
-     }
+    //     window.location.reload();
+    //  }
     
  });
  homeButton.addEventListener('click', () => {
     // alert('you are in login.js');
-     window.location.href = `/homepage/${currentUser}`;
+     window.location.href = `/homepage`;
  });
+
  if(logoutButton !== null){
 
      logoutButton.addEventListener('click', () => {
@@ -40,9 +42,17 @@ dashboardButton.addEventListener('click', async () => {
  }
  if(loginButton !== null){
 
-    loginButton.addEventListener('click', () => {
-        // alert('you are in login.js');
-         window.location.href = '/homepage/login';
-     });
+    loginButton.addEventListener('click', async () =>{
 
- }
+        try{
+            await fetch('/homepage/login');
+            window.location.href = '/homepage/login';
+
+        }
+        catch(err){
+            console.error(err);
+        }
+
+    });
+
+}
