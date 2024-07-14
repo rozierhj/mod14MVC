@@ -14,7 +14,7 @@ router.get('/',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:false});
+        res.render('homepage',{posts, showContent:false, hasUser:false});
 
     }catch(err){
         res.status(500).json(err);
@@ -34,7 +34,7 @@ router.get('/:user_name',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:false});
+        res.render('homepage',{posts, showContent:false, hasUser:true, hasUser:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -54,7 +54,7 @@ router.get('/:user_name/newPost',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:true});
+        res.render('homepage',{posts, showContent:true, hasUser:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -103,7 +103,7 @@ router.get('/:user_name/:post_id',async (req, res) => {
             const userComment = userComments.map(comment =>comment.get({plain: true}));
             userComment.sort((a, b) => b.id - a.id);
 
-            res.render('homepage',{posts, comments, otherPost, userComment});
+            res.render('homepage',{posts, comments, otherPost, userComment, hasUser:true});
             //res.status(200).json(editPost);
         
 
@@ -157,7 +157,7 @@ router.get('/:user_name/:post_id/myPost',async (req, res) => {
             const ourUserPost = ourUserPosts.map(post=>post.get({plain: true}));
             
 
-            res.render('homepage',{posts, comments, ourUserPost, userComment});
+            res.render('homepage',{posts, comments, ourUserPost, userComment, hasUser:true});
             //res.status(200).json(editPost);
         
 
@@ -197,7 +197,7 @@ router.get('/:user_name/:post_id/newComment',async (req, res)=>{
             const otherPost = otherPosts.map(post=>post.get({plain: true}));
             // console.log(otherPost)
             // console.log(comments);
-            res.render('homepage',{posts, comments, otherPost, showContent:true});
+            res.render('homepage',{posts, comments, otherPost, showContent:true, hasUser:true});
             //res.status(200).json(editPost);
 
     }
@@ -249,7 +249,7 @@ router.get('/:user_name/:post_id/:comment_id',async (req, res)=>{
             const editComment = myComments.map(post=>post.get({plain: true}));
             // console.log(otherPost)
             // console.log(comments);
-            res.render('homepage',{posts, editComment, otherPost, comments});
+            res.render('homepage',{posts, editComment, otherPost, comments, hasUser:true});
             //res.status(200).json(editPost);
 
     }

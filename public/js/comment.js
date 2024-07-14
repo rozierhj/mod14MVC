@@ -133,10 +133,8 @@ if(newComment!==null){
         });
     }
 
-
-
-
 }
+
 
 if(closeEditButton !== null){
 
