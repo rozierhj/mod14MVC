@@ -5,7 +5,7 @@ const dashboardRoutes = require('./dashboard-routes.js');
 const loginRoutes = require('./login-routes.js');
 const homeRoutes = require('./home-routes.js');
 const logoutRoutes = require('./logout-routes.js');
-router.use('/', loginRoutes);
+//router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
 router.use('/homepage',homeRoutes);
 router.use('/dashboard',dashboardRoutes);

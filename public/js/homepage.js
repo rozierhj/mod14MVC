@@ -1,7 +1,3 @@
-// const { response } = require("express");
-document.addEventListener('DOMContentLoaded', function () {
-    // window.scrollTo(0, document.body.scrollHeight);
-});
 
 const homePostButton = document.getElementById('make-post');
 const homePostHeader = document.getElementsByClassName('post-header');
