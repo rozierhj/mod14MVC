@@ -5,7 +5,6 @@ const {Op} = require('sequelize');
 router.get('/',async (req, res) => {
 
     try{
-        console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
         });
@@ -14,7 +13,7 @@ router.get('/',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:false, hasUser:false});
+        res.render('homepage',{posts, showContent:false, hasUser:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -22,10 +21,50 @@ router.get('/',async (req, res) => {
 
 });
 
+router.get('/login', async (req, res) =>{
+
+    try{
+        const allPosts = await Post.findAll({
+            attributes:['id','blog_post','post_title','post_date','user_name'],
+        });
+
+        const posts = allPosts.map(post => post.get({plain: true}));
+
+        posts.sort((a, b) => b.id - a.id);
+
+        res.render('homepage',{posts, showContent:false, loginUser:true});
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+
+});
+
+router.get('/createAccount', async (req, res) =>{
+
+    try{
+        const allPosts = await Post.findAll({
+            attributes:['id','blog_post','post_title','post_date','user_name'],
+        });
+
+        const posts = allPosts.map(post => post.get({plain: true}));
+
+        posts.sort((a, b) => b.id - a.id);
+
+        res.render('homepage',{posts, showContent:false, createUser:true});
+
+    }catch(err){
+        res.status(500).json(err);
+    }
+
+
+});
+
 router.get('/:user_name',async (req, res) => {
 
     try{
-        console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm');
+
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
         });
@@ -37,7 +76,7 @@ router.get('/:user_name',async (req, res) => {
         res.render('homepage',{posts, showContent:false, hasUser:true, hasUser:false});
 
     }catch(err){
-        console.log('ghhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh');
+
         console.error('bad request',err);
         res.status(500).json(err);
     }
@@ -67,7 +106,6 @@ router.get('/:user_name/newPost',async (req, res) => {
 router.get('/:user_name/:post_id',async (req, res) => {
 
     try{
-        console.log('lllllllllllllllllllllllllllllllllllllllllll');
         const postID = req.params.post_id;
         const userName = req.params.user_name;
         const allPosts = await Post.findAll({

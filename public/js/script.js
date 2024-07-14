@@ -42,7 +42,7 @@ dashboardButton.addEventListener('click', async () => {
 
     loginButton.addEventListener('click', () => {
         // alert('you are in login.js');
-         window.location.href = '/login';
+         window.location.href = '/homepage/login';
      });
 
  }

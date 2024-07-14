@@ -1,36 +1,50 @@
 
-async function getUserID(user_name){
+const createAccount = document.getElementById('create-new-account');
+const createMyAccount = document.getElementById('create-my-account');
+const createPassword = document.getElementById('create-password');
+const createUsername = document.getElementById('create-username');
 
-    try{
+if(createAccount !== null){
 
-        const response = await fetch(`api/users/${user_name}`);
 
-        const data = await response.json();
-
-        return data.id;
-
-    }
-    catch(err){
-        console.error(err);
-    }
+    createAccount.addEventListener('click', async () =>{
+    
+        try{
+            await fetch('/homepage/createAccount');
+        
+            window.location.href = '/homepage/createAccount';
+    
+        }
+        catch(err){
+            console.error(err);
+        }
+    
+    });
 
 }
 
-    async function confirmUser(postOrCommentOwner, currentUser){
+if(createMyAccount !== null){
 
-    let allowEdit = false;
+    createMyAccount.addEventListener('click', async () =>{
+        alert(createUsername.value);
+        const response = await fetch('/api/users/add',{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            
+            body: JSON.stringify({
+                user_name: createUsername.value,
+                password: createPassword.value,
+            })
+        });
+        
+        const data = await response.json();
 
-    if(postOrCommentOwner === currentUser){
+        console.log(data);
 
-        allowEdit = true;
+        window.location.href = '/dashboard';
 
-    }
-    else{
-
-        allowEdit = false;
-
-    }
-
-    return allowEdit;
+    });
 
 }

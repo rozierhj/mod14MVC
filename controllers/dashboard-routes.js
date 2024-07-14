@@ -17,7 +17,7 @@ router.get('/',async (req, res) => {
         posts.sort((a, b) => b.id - a.id);
         const comments = allComments.map(comment =>comment.get({plain: true}));
         comments.sort((a, b) => b.id - a.id);
-        res.render('dashboard',{posts, comments, hasUser:true});
+        res.render('dashboard',{posts, comments});
 
     }catch(err){
         res.status(500).json(err);
@@ -43,7 +43,7 @@ router.get('/:user_name',async (req, res) => {
         posts.sort((a, b) => b.id - a.id);
         const comments = allComments.map(comment =>comment.get({plain: true}));
         comments.sort((a, b) => b.id - a.id);
-        res.render('dashboard',{posts, comments, hasUser:true});
+        res.render('dashboard',{posts, comments});
 
     }catch(err){
         console.error('bad error');
@@ -67,7 +67,7 @@ router.get('/:user_name/newpost',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('dashboard',{posts, showContent:true, hasUser:true});
+        res.render('dashboard',{posts, showContent:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -108,7 +108,7 @@ router.get('/:post_id',async (req, res) => {
             const comments = allComments.map(comment =>comment.get({plain: true}));
             comments.sort((a, b) => b.id - a.id);
             const otherPost = otherPosts.map(post=>post.get({plain: true}));
-            res.render('dashboard',{posts, comments, otherPost, hasUser:true});
+            res.render('dashboard',{posts, comments, otherPost});
             //res.status(200).json(editPost);
         }
 
@@ -139,7 +139,7 @@ router.get('/:user_name/:post_id',async (req, res) => {
             const posts = allPosts.map(post => post.get({plain: true}));
             posts.sort((a, b) => b.id - a.id);
             const editPost = editPosts.map(post => post.get({plain: true}));
-            res.render('dashboard',{posts, editPost, hasUser:true});
+            res.render('dashboard',{posts, editPost});
         
 
     }catch(err){

@@ -1,12 +1,8 @@
 
 const homePostButton = document.getElementById('make-post');
 const homePostHeader = document.getElementsByClassName('post-header');
-// const savePostButton = document.getElementById('save-post');
-// const deletePost = document.getElementsByClassName('delete-post');
-// const editPost = document.getElementsByClassName('edit-post');
-// const commentButton = document.getElementsByClassName('comment-button');
-// const saveCommentButton = document.getElementById('save-comment');
-// const saveEditButton = document.getElementById('edit-save-post');
+//const loginButton = document.getElementById('login-button');
+
 
 //button to create new posts
 homePostButton.addEventListener('click', async () => {
@@ -22,6 +18,23 @@ homePostButton.addEventListener('click', async () => {
     }
 
 });
+
+if(loginButton !== null){
+
+    loginButton.addEventListener('click', async () =>{
+
+        try{
+            await fetch('/homepage/login');
+            window.location.href = '/homepage/login';
+
+        }
+        catch(err){
+            console.error(err);
+        }
+
+    });
+
+}
 
 // set event for headers for every post
 Array.from(homePostHeader).forEach(postHeader => {
