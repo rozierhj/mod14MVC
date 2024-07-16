@@ -5,19 +5,23 @@ const homePostHeader = document.getElementsByClassName('post-header');
 
 
 //button to create new posts
-homePostButton.addEventListener('click', async () => {
+if(homePostButton !== null){
 
-    try{
-        await fetch(`/homepage/${currentUser}/newPost`);
-        window.location.href = `/homepage/${currentUser}/newPost`;
-        console.log('success');
+    homePostButton.addEventListener('click', async () => {
+    
+        try{
+            await fetch(`/homepage/newPost`);
+            window.location.href = `/homepage/newPost`;
+            console.log('success');
+    
+        }
+        catch(err){
+            console.error(err);
+        }
+    
+    });
 
-    }
-    catch(err){
-        console.error(err);
-    }
-
-});
+}
 
 
 
@@ -37,17 +41,19 @@ Array.from(homePostHeader).forEach(postHeader => {
 
             const data = await response.json();
 
-            const postUser = data.user_name;
+            const postUser = data.selectPost.user_name;
+            const currentUser = data.currentUser;
+        
 
             if(postUser === currentUser){
 
-                await fetch(`/homepage/${currentUser}/${postID}/myPost`);
-                window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+                await fetch(`/homepage/myPost/${postID}`);
+                window.location.href = `/homepage/myPost/${postID}`;
             }
 
             else{
-                await fetch(`/homepage/${currentUser}/${postID}`);
-                window.location.href = `/homepage/${currentUser}/${postID}`;
+                await fetch(`/homepage/post/${postID}`);
+                window.location.href = `/homepage/post/${postID}`;
             }
 
 

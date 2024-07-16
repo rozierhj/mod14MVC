@@ -13,7 +13,7 @@ router.get('/',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:false, hasUser:true});
+        res.render('homepage',{posts, showContent:false, noUser:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -61,29 +61,29 @@ router.get('/createAccount', async (req, res) =>{
 
 });
 
-router.get('/:user_name',async (req, res) => {
+// router.get('/:user_name',async (req, res) => {
 
-    try{
+//     try{
 
-        const allPosts = await Post.findAll({
-            attributes:['id','blog_post','post_title','post_date','user_name'],
-        });
+//         const allPosts = await Post.findAll({
+//             attributes:['id','blog_post','post_title','post_date','user_name'],
+//         });
 
-        const posts = allPosts.map(post => post.get({plain: true}));
+//         const posts = allPosts.map(post => post.get({plain: true}));
 
-        posts.sort((a, b) => b.id - a.id);
+//         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:false, hasUser:true, hasUser:false});
+//         res.render('homepage',{posts, showContent:false, hasUser:true, hasUser:false});
 
-    }catch(err){
+//     }catch(err){
 
-        console.error('bad request',err);
-        res.status(500).json(err);
-    }
+//         console.error('bad request',err);
+//         res.status(500).json(err);
+//     }
 
-});
+// });
 
-router.get('/:user_name/newPost',async (req, res) => {
+router.get('/newPost',async (req, res) => {
 
     try{
 
@@ -103,11 +103,11 @@ router.get('/:user_name/newPost',async (req, res) => {
 
 });
 
-router.get('/:user_name/:post_id',async (req, res) => {
+router.get('/post/:post_id',async (req, res) => {
 
     try{
         const postID = req.params.post_id;
-        const userName = req.params.user_name;
+        const userName = req.session.user_name;
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
             // where:{
@@ -144,7 +144,7 @@ router.get('/:user_name/:post_id',async (req, res) => {
             const userComment = userComments.map(comment =>comment.get({plain: true}));
             userComment.sort((a, b) => b.id - a.id);
 
-            res.render('homepage',{posts, comments, otherPost, userComment, hasUser:true});
+            res.render('homepage',{posts, comments, otherPost, userComment});
             //res.status(200).json(editPost);
         
 
@@ -154,11 +154,11 @@ router.get('/:user_name/:post_id',async (req, res) => {
 
 });
 
-router.get('/:user_name/:post_id/myPost',async (req, res) => {
+router.get('/myPost/:post_id',async (req, res) => {
 
     try{
         const postID = req.params.post_id;
-        const userName = req.params.user_name;
+        const userName = req.session.user_name;
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
             // where:{
@@ -197,8 +197,9 @@ router.get('/:user_name/:post_id/myPost',async (req, res) => {
             userComment.sort((a, b) => b.id - a.id);
             const ourUserPost = ourUserPosts.map(post=>post.get({plain: true}));
             
+            console.log(ourUserPost);
 
-            res.render('homepage',{posts, comments, ourUserPost, userComment, hasUser:true});
+            res.render('homepage',{posts, comments, ourUserPost, userComment, noUser: false});
             //res.status(200).json(editPost);
         
 
@@ -208,7 +209,7 @@ router.get('/:user_name/:post_id/myPost',async (req, res) => {
 
 });
 
-router.get('/:user_name/:post_id/newComment',async (req, res)=>{
+router.get('/newComment/:post_id',async (req, res)=>{
 
     try{
 
@@ -248,7 +249,7 @@ router.get('/:user_name/:post_id/newComment',async (req, res)=>{
 
 });
 
-router.get('/:user_name/:post_id/:comment_id',async (req, res)=>{
+router.get('/comment/:post_id/:comment_id',async (req, res)=>{
 
     try{
 

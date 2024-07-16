@@ -100,7 +100,20 @@ router.get('/:id', async(req, res) =>{
             where:{id:req.params.id},
         });
 
-        res.status(200).json(post);
+        const selectPost = post.get({plain: true});
+        
+        if(!post){
+            res.status(404).json({message:'Post not found'});
+            return;
+        }
+
+        const response = {
+            selectPost,
+            currentUser : req.session.user_name
+        };
+
+        console.log(response);
+        res.status(200).json(response);
 
     }catch(err){
         res.status(500).json(err);
