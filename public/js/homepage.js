@@ -23,8 +23,6 @@ if(homePostButton !== null){
 
 }
 
-
-
 // set event for headers for every post
 Array.from(homePostHeader).forEach(postHeader => {
 

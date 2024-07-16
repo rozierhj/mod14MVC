@@ -16,10 +16,25 @@ if(newComment!==null){
             
             const postToComment = currentPost.querySelector('.post-card-w-comment');
             const postID = postToComment.id;
+
+            const response = await fetch(`/api/post/${postID}`);
+
+            const data = await response.json();
+
+            const postUser = data.selectPost.user_nane;
+            const currentUser = data.currentUser;
+
+            if(currentUser === postUser){
+
+                await fetch(`/homepage/myPost/${postID}/newComment`);
+                window.location.href = `/homepage/myPost/${postID}/newComment`;
+            }
+            else{
+                await fetch(`/homepage/post/${postID}/newComment`);
+                window.location.href = `/homepage/post/${postID}/newComment`;
+            }
     
-            await fetch(`/homepage/${currentUser}/${postID}/newComment`);
     
-            window.location.href = `/homepage/${currentUser}/${postID}/newComment`;
     
         }
         catch(err){
@@ -49,7 +64,6 @@ if(newComment!==null){
                     body: JSON.stringify({
                         post_comment: `${commentText.value}`,
                         post_id:`${postID}`,
-                        user_name: `${currentUser}`,
                     })
                 });
         
@@ -63,16 +77,17 @@ if(newComment!==null){
     
                 const pageData = await pageResponse.json();
     
-                const postUser = pageData.user_name;
+                const postUser = pageData.selectPost.user_name;
+                const currentUser = pageData.currentUser;
     
                 if(location.includes('homepage') && postUser === currentUser){
-                    window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+                    window.location.href = `/homepage/myPost/${postID}`;
                 }
                 else if(location.includes('homepage') && postUser !== currentUser){
-                    window.location.href = `/homepage/${currentUser}/${postID}`;
+                    window.location.href = `/homepage/post/${postID}`;
                 }
                 else{
-                    window.location.href = `/dashboard/${currentUser}`;
+                    window.location.href = `/dashboard`;
                 }
             }
             catch(err){
@@ -93,15 +108,16 @@ if(newComment!==null){
         
                 const pageData = await pageResponse.json();
         
-                const postUser = pageData.user_name;
+                const postUser = pageData.selectPost.user_name;
+                const currentUser = pageData.currentUser;
     
                 if(postUser === currentUser){
     
-                    window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+                    window.location.href = `/homepage/myPost/${postID}`;
     
                 }
                 else{
-                    window.location.href = `/homepage/${currentUser}/${postID}`;
+                    window.location.href = `/homepage/post/${postID}`;
                 }
         
     
@@ -155,13 +171,14 @@ if(closeEditButton !== null){
             const response = await fetch(`/api/post/${postID}`);
             const data = await response.json();
 
-            const userName = data.user_name;
+            const userName = data.selectPost.user_name;
+            const currentUser = data.currentUser;
 
             if(userName === currentUser){
-                window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+                window.location.href = `/homepage/myPost/${postID}`;
             }
             else{
-                window.location.href = `/homepage/${currentUser}/${postID}`;
+                window.location.href = `/homepage/post/${postID}`;
             }
 
 

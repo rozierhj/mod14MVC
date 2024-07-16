@@ -10,11 +10,18 @@ router.post('/add', async(req, res)=>{
             post_comment: req.body.post_comment,
             post_id: req.body.post_id,
             comment_date: new Date(),
-            user_name: req.body.user_name,
+            user_name: req.session.user_name,
 
         });
+
+        const theNewComment = newComment.get({plain:true});
+
+        const response ={
+            theNewComment,
+            user_name: req.session.user_name
+        }
        // console.log('added post',newPost);
-        res.status(200).json(newComment);
+        res.status(200).json(response);
 
     }catch(err){
         res.status(500).json(err);
