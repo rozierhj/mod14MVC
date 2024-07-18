@@ -137,9 +137,9 @@ if(newComment!==null){
                 const postToComment = currentPost.querySelector('.post-card-w-comment');
                 const postID = postToComment.id;
         
-                await fetch(`/homepage/${currentUser}/${postID}/newComment`);
+                await fetch(`/homepage/myPost/${postID}/newComment`);
         
-                window.location.href = `/homepage/${currentUser}/${postID}/newComment`;
+                window.location.href = `/homepage/myPost/${postID}/newComment`;
         
             }
             catch(err){
@@ -218,13 +218,16 @@ if(closeEditButton !== null){
             const pageResponse = await fetch(`/api/post/${postID}`);
             const pageData = await pageResponse.json();
 
-            const userName = pageData.user_name;
+            const userName = pageData.selectPost.user_name;
+            const currentUser = pageData.currentUser;
 
             if(userName === currentUser){
-                window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+                await fetch(`/homepage/myPost/${postID}`);
+                window.location.href = `/homepage/myPost/${postID}`;
             }
             else{
-                window.location.href = `/homepage/${currentUser}/${postID}`;
+                await fetch(`/homepage/post/${postID}`);
+                window.location.href = `/homepage/post/${postID}`;
             }
     
         }

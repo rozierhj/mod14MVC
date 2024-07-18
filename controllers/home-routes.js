@@ -329,7 +329,7 @@ router.get('/post/:post_id/newComment',async (req, res)=>{
 
 });
 
-router.get('/comment/:post_id/:comment_id',async (req, res)=>{
+router.get('/myPost/:post_id/:comment_id',async (req, res)=>{
 
     try{
 

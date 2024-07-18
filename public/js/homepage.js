@@ -42,8 +42,14 @@ Array.from(homePostHeader).forEach(postHeader => {
             const postUser = data.selectPost.user_name;
             const currentUser = data.currentUser;
         
+            if(!currentUser){
 
-            if(postUser === currentUser){
+                await fetch('/homepage/login');
+                window.location.href = '/homepage/login';
+
+            }
+
+            else if(postUser === currentUser){
 
                 await fetch(`/homepage/myPost/${postID}`);
                 window.location.href = `/homepage/myPost/${postID}`;

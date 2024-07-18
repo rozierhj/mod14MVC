@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const bcrypt = require('bcrypt');
 
 router.get('/:user_name', async(req, res) =>{
   
@@ -24,7 +25,7 @@ router.get('/:user_name', async(req, res) =>{
 });
 
 router.post('/add', async(req, res)=>{
-    console.log('gggggggggggggggggggggggggggggggggggggggggffffffffffffffffffffff');
+
     console.log(req.body.user_name);
     console.log(req.body.password);
     try{
@@ -47,4 +48,51 @@ router.post('/add', async(req, res)=>{
     }
 
 });
+
+router.post('/login', async (req, res) =>{
+
+    try{
+        //find user in DB
+        const userDB = await User.findOne({
+            where:{
+                user_name: req.body.user_name,
+            },
+        });
+        if(!userDB){
+            res.status(400).json({message:'Incorrect user name or password'});
+            return;
+        }
+        const goodPassword = await bcrypt.compare(req.body.password, userDB.password);
+
+        if(!goodPassword){
+            res.status(400).json({message: 'Incorrect user name or password'});
+            return;
+        }
+        else{
+            req.session.save(() =>{
+
+                req.session.loggedIn = true;
+                req.session.user_name = userDB.user_name;
+
+                res.status(200).json({
+                    message: "logged in", 
+                    session: {
+                        loggedIn: req.session.loggedIn,
+                        user_name: req.session.user_name
+                    }
+                });
+
+            });
+        }
+
+    }
+    catch(err){
+        console.log('we are having problems!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+        res.status(500).json(err);
+    }
+
+});
+
+
+
 module.exports = router;

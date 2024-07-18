@@ -137,13 +137,16 @@ if(closeBtnDab !== null){
 
                     const pageData = await pageResponse.json();
 
-                    const postUser = pageData.user_name;
+                    const postUser = pageData.selectPost.user_name;
+                    const currentUser = pageData.currentUser;
 
                     if(postUser === currentUser){
-                    window.location.href = `/homepage/${currentUser}/${postID}/myPost`;
+                    await fetch(`/homepage/myPost/${postID}`);
+                    window.location.href = `/homepage/myPost/${postID}`;
                     }
                     else{
-                    window.location.href = `/homepage/${currentUser}/${postID}`;
+                    await fetch(`/homepage/post/${postID}`);
+                    window.location.href = `/homepage/post/${postID}`;
                     }
 
                 }
@@ -171,9 +174,9 @@ if(closeBtnDab !== null){
                     const commentName = editCom.id;
                     const commID = commentName.replace('comment-edit-','');
     
-                    await fetch(`/homepage/${currentUser}/${postID}/${commID}`);
+                    await fetch(`/homepage/myPost/${postID}/${commID}`);
 
-                    window.location.href = `/homepage/${currentUser}/${postID}/${commID}`;
+                    window.location.href = `/homepage/myPost/${postID}/${commID}`;
 
                 }
                 catch(err){

@@ -14,6 +14,7 @@
             req.session.save(() =>{
 
                 req.session.loggedIn = true;
+                req.session.user_name = newUser.user_name;
 
                 res.status(200).json(newUser);
 
@@ -39,10 +40,21 @@
                 res.status(400).json({message:'Incorrect user name or password'});
                 return;
             }
-            const goodPassword = await userDB.checkPassword(req.body.password);
+            const goodPassword = await bcrypt.compare(req.body.password, userDB.password);
 
             if(!goodPassword){
                 res.status(400).json({message: 'Incorrect user name or password'});
+                return;
+            }
+            else{
+                req.session.save(() =>{
+
+                    req.session.loggedIn = true;
+                    req.session.user_name = userDB.user_name;
+    
+                    res.status(200).json({message: "logged in"});
+    
+                });
             }
 
         }
