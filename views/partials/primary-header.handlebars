@@ -4,6 +4,9 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="height: 100px; background-color: black !important;">
             <img src="/img/tinyComputer.jpg" alt="Bootstrap" height="80px">
             <a class="navbar-brand" href="/" style="color: white; font-weight:700; font-size:30px;">Totally Rad Tech Blog</a>
+            {{#if currentUser}}
+            <div id="welcome-to-user" style="color: white; font-weight:400; font-size: 16px; margin-right: 20px;">Welcome {{currentUser}}</div>
+            {{/if}}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
       <span class="navbar-toggler-icon"></span>
             </button>
@@ -17,7 +20,7 @@
         <button id="dashboard-button" class="nav-link active" aria-current="page" style="color: white;">Dashboard</button>
 
         </li>
-        {{#if loggedIn}}
+        {{#ifEqual noUser false}}
         <li class="nav-item">
           <button id="logout-button" class="nav-link active" aria-current="page" style="color: white;">Logout</button>
         </li>
@@ -25,7 +28,7 @@
           <li class="nav-item">
           <button id="login-button" class="nav-link active" aria-current="page" style="color: white;">Login</button>
         </li>
-        {{/if}}
+        {{/ifEqual}}
       </ul>
             </div>
             </div>

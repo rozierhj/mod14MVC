@@ -8,23 +8,48 @@ dashboardButton.addEventListener('click', async () => {
     //const userID = await  getUserID(currentUser);
     // alert(userID);
     
+    const response = await fetch('/api/users/userSearch');
 
-    await fetch('/dashboard');
+    const data = await response.json();
 
-    window.location.href = '/dashboard';
+    if(data.loggedIn === true){
+        await fetch('/dashboard');
+        window.location.href = '/dashboard';
 
-
+    }
+    else{
+        await fetch('/homepage/login');
+        window.location.href = '/homepage/login';
+    }
     
  });
- homeButton.addEventListener('click', () => {
-    // alert('you are in login.js');
-     window.location.href = `/homepage`;
+ homeButton.addEventListener('click', async () => {
+
+    const response = await fetch('/api/users/userSearch');
+
+    console.log(response);
+
+    const data = await response.json();
+
+    console.log(data);
+
+    if(data.loggedIn === true){
+        await fetch('/homepage');
+        window.location.href = '/homepage';
+
+    }
+    else{
+        await fetch('/homepage/login');
+        window.location.href = '/homepage/login';
+    }
  });
 
  if(logoutButton !== null){
 
-     logoutButton.addEventListener('click', () => {
+
+     logoutButton.addEventListener('click', async () => {
         // alert('you are in login.js');
+        await fetch('/');
          window.location.href = '/';
      });
  }
@@ -33,8 +58,8 @@ dashboardButton.addEventListener('click', async () => {
     loginButton.addEventListener('click', async () =>{
 
         try{
-            await fetch('/homepage/login');
-            window.location.href = '/homepage/login';
+            await fetch('/login');
+            window.location.href = '/login';
 
         }
         catch(err){

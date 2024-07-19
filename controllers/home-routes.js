@@ -2,10 +2,11 @@ const router = require('express').Router();
 const {Post, Comment} = require('../models');
 const {Op} = require('sequelize');
 
+
 router.get('/',async (req, res) => {
 
-    const user = req.session.user_name;
-
+    const currentUser = req.session.user_name;
+    
     try{
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
@@ -16,11 +17,11 @@ router.get('/',async (req, res) => {
         posts.sort((a, b) => b.id - a.id);
 
         
-        if(user !== null && user !== undefined && user !== ''){
-            res.render('homepage',{posts, showContent:false, noUser:false});
+        if(currentUser !== null && currentUser !== undefined && currentUser !== ''){
+            res.render('homepage',{posts, showContent:false, noUser:false, currentUser});
         }
         else{
-            res.render('homepage',{posts, showContent:false, noUser:true});
+            res.render('homepage',{posts, showContent:false, noUser:true, isFirstPage:true});
         }
 
     }catch(err){
@@ -31,7 +32,7 @@ router.get('/',async (req, res) => {
 
 router.get('/homepage',async (req, res) => {
 
-    const user = req.session.user_name;
+    const currentUser = req.session.user_name;
 
 
     try{
@@ -43,8 +44,8 @@ router.get('/homepage',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        if(user !== null && user !== undefined && user !== ''){
-            res.render('homepage',{posts, showContent:false, noUser:false});
+        if(currentUser !== null && currentUser !== undefined && currentUser !== ''){
+            res.render('homepage',{posts, showContent:false, noUser:false, currentUser});
         }
         else{
             res.render('homepage',{posts, showContent:false, noUser:true});
@@ -68,7 +69,7 @@ router.get('/login', async (req, res) =>{
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:false, loginUser:true});
+        res.render('homepage',{posts, showContent:false, loginUser:true, isFirstPage:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -97,30 +98,9 @@ router.get('/createAccount', async (req, res) =>{
 
 });
 
-// router.get('/:user_name',async (req, res) => {
-
-//     try{
-
-//         const allPosts = await Post.findAll({
-//             attributes:['id','blog_post','post_title','post_date','user_name'],
-//         });
-
-//         const posts = allPosts.map(post => post.get({plain: true}));
-
-//         posts.sort((a, b) => b.id - a.id);
-
-//         res.render('homepage',{posts, showContent:false, hasUser:true, hasUser:false});
-
-//     }catch(err){
-
-//         console.error('bad request',err);
-//         res.status(500).json(err);
-//     }
-
-// });
 
 router.get('/newPost',async (req, res) => {
-
+    const currentUser = req.session.user_name;
     try{
 
         const allPosts = await Post.findAll({
@@ -131,7 +111,7 @@ router.get('/newPost',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:true, newPost:true});
+        res.render('homepage',{posts, showContent:true, newPost:true, noUser:false, currentUser});
 
     }catch(err){
         res.status(500).json(err);
@@ -140,6 +120,7 @@ router.get('/newPost',async (req, res) => {
 });
 
 router.get('/post/:post_id',async (req, res) => {
+    const currentUser = req.session.user_name;
 
     try{
         const postID = req.params.post_id;
@@ -180,7 +161,7 @@ router.get('/post/:post_id',async (req, res) => {
             const userComment = userComments.map(comment =>comment.get({plain: true}));
             userComment.sort((a, b) => b.id - a.id);
 
-            res.render('homepage',{posts, comments, otherPost, userComment});
+            res.render('homepage',{posts, comments, otherPost, userComment, noUser:false,currentUser});
             //res.status(200).json(editPost);
         
 
@@ -191,6 +172,8 @@ router.get('/post/:post_id',async (req, res) => {
 });
 
 router.get('/myPost/:post_id',async (req, res) => {
+    const currentUser = req.session.user_name;
+
 
     try{
         const postID = req.params.post_id;
@@ -235,7 +218,7 @@ router.get('/myPost/:post_id',async (req, res) => {
             
             console.log(ourUserPost);
 
-            res.render('homepage',{posts, comments, ourUserPost, userComment, noUser: false});
+            res.render('homepage',{posts, comments, ourUserPost, userComment, noUser: false,currentUser});
             //res.status(200).json(editPost);
         
 
@@ -247,6 +230,8 @@ router.get('/myPost/:post_id',async (req, res) => {
 
 router.get('/myPost/:post_id/newComment',async (req, res)=>{
 
+    const currentUser = req.session.user_name;
+
     try{
 
         const postID = req.params.post_id;
@@ -277,7 +262,7 @@ router.get('/myPost/:post_id/newComment',async (req, res)=>{
             const otherPost = otherPosts.map(post=>post.get({plain: true}));
             // console.log(otherPost)
             // console.log(comments);
-            res.render('homepage',{posts, comments, otherPost, showContent:true, hasUser:true});
+            res.render('homepage',{posts, comments, otherPost, showContent:true, hasUser:true, noUser:false,currentUser});
             //res.status(200).json(editPost);
 
     }
@@ -288,6 +273,8 @@ router.get('/myPost/:post_id/newComment',async (req, res)=>{
 });
 
 router.get('/post/:post_id/newComment',async (req, res)=>{
+    const currentUser = req.session.user_name;
+
 
     try{
 
@@ -319,7 +306,7 @@ router.get('/post/:post_id/newComment',async (req, res)=>{
             const otherPost = otherPosts.map(post=>post.get({plain: true}));
             // console.log(otherPost)
             // console.log(comments);
-            res.render('homepage',{posts, comments, otherPost, showContent:true, hasUser:true});
+            res.render('homepage',{posts, comments, otherPost, showContent:true, hasUser:true, noUser:false,currentUser});
             //res.status(200).json(editPost);
 
     }
@@ -330,6 +317,7 @@ router.get('/post/:post_id/newComment',async (req, res)=>{
 });
 
 router.get('/myPost/:post_id/:comment_id',async (req, res)=>{
+    const currentUser = req.session.user_name;
 
     try{
 
@@ -371,7 +359,7 @@ router.get('/myPost/:post_id/:comment_id',async (req, res)=>{
             const editComment = myComments.map(post=>post.get({plain: true}));
             // console.log(otherPost)
             // console.log(comments);
-            res.render('homepage',{posts, editComment, otherPost, comments, hasUser:true});
+            res.render('homepage',{posts, editComment, otherPost, comments, hasUser:true, noUser:false,currentUser});
             //res.status(200).json(editPost);
 
     }

@@ -4,16 +4,29 @@ const {Op} = require('sequelize');
 
 router.get('/',async (req, res) => {
 
+    const currentUser = req.session.user_name;
+
+
     try{
 
         const allPosts = await Post.findAll({
             attributes:['id','blog_post','post_title','post_date','user_name'],
+            where:{
+                user_name: req.session.user_name
+            }
         });
 
         const posts = allPosts.map(post => post.get({plain: true}));
         posts.sort((a, b) => b.id - a.id);
         
-        res.render('dashboard',{posts});
+        // res.render('dashboard',{posts});
+        // if(currentUser !== null && currentUser !== undefined && currentUser !== ''){
+            res.render('dashboard',{posts, noUser:false, currentUser});
+        // }
+        // else{
+        //     res.render('dashboard',{posts, noUser:true});
+        // }
+        
 
     }catch(err){
         res.status(500).json(err);
@@ -21,36 +34,10 @@ router.get('/',async (req, res) => {
 
 });
 
-// router.get('/:user_name',async (req, res) => {
-
-//     try{
-//          console.log('ggggggggggggggggggggggggggggggggggggggggggg');
-//         const allPosts = await Post.findAll({
-//             attributes:['id','blog_post','post_title','post_date','user_name'],
-//             where:{
-//                 user_name:req.params.user_name
-//             }
-//         });
-//         const allComments = await Comment.findAll({
-//             attributes: ['id','post_comment','comment_date','post_id','user_name'],
-//         })
-
-//         const posts = allPosts.map(post => post.get({plain: true}));
-//         posts.sort((a, b) => b.id - a.id);
-//         const comments = allComments.map(comment =>comment.get({plain: true}));
-//         comments.sort((a, b) => b.id - a.id);
-//         res.render('dashboard',{posts, comments});
-
-//     }catch(err){
-//         console.error('bad error');
-//         res.status(500).json(err);
-//     }
-
-// });
 
 router.get('/newpost',async (req, res) => {
     
-    console.log('gbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
+    const currentUser = req.session.user_name;
 
     try{
 
@@ -65,7 +52,7 @@ router.get('/newpost',async (req, res) => {
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('dashboard',{posts, newPost:true});
+        res.render('dashboard',{posts, newPost:true, noUser:false,currentUser});
 
     }catch(err){
         res.status(500).json(err);
@@ -110,6 +97,7 @@ router.get('/:post_id',async (req, res) => {
 */
 
 router.get('/:post_id',async (req, res) => {
+    const currentUser = req.session.user_name;
 
     try{
         const postID = req.params.post_id;
@@ -129,7 +117,7 @@ router.get('/:post_id',async (req, res) => {
             const posts = allPosts.map(post => post.get({plain: true}));
             posts.sort((a, b) => b.id - a.id);
             const editPost = editPosts.map(post => post.get({plain: true}));
-            res.render('dashboard',{posts, editPost});
+            res.render('dashboard',{posts, editPost, noUser:false,currentUser});
         
 
     }catch(err){

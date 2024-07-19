@@ -2,27 +2,27 @@ const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
-router.get('/:user_name', async(req, res) =>{
+// router.get('/:user_name', async(req, res) =>{
   
-    try{
-        const user = await User.findOne({
-            attributes:['id','user_name','password'],
-            where:{
-                user_name: req.params.user_name
-            }
-        });
+//     try{
+//         const user = await User.findOne({
+//             attributes:['id','user_name','password'],
+//             where:{
+//                 user_name: req.params.user_name
+//             }
+//         });
 
         
-       // const users = allUsers.map(user => user.get({plain: true}));
+//        // const users = allUsers.map(user => user.get({plain: true}));
        
-       const userData = user.get({plain:true});
-        res.status(200).json(userData);
+//        const userData = user.get({plain:true});
+//         res.status(200).json(userData);
 
-    }catch(err){
-        res.status(500).json(err);
-    }
+//     }catch(err){
+//         res.status(500).json(err);
+//     }
 
-});
+// });
 
 router.post('/add', async(req, res)=>{
 
@@ -87,12 +87,45 @@ router.post('/login', async (req, res) =>{
 
     }
     catch(err){
-        console.log('we are having problems!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
         res.status(500).json(err);
     }
 
 });
 
+router.post('/logout', async (req, res) =>{
 
+    if(req.session.user_name !== '' && req.session.user_name !== null && req.session.user_name !== undefined){
+        req.session.destroy(()=>{
+            res.status(204).end();
+        });
+    }
+    else{
+        res.status(404).end();
+    }
+
+});
+
+router.get('/userSearch', async (req, res)=>{
+
+
+
+    try{
+
+
+        if(req.session.loggedIn === true){
+            res.status(200).json({loggedIn:true});
+        }
+        else{
+            res.status(200).json({loggedIn:false})
+        }
+    }
+    catch(err){
+
+
+        res.status(504).json(err);
+    }
+
+});
 
 module.exports = router;
