@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
 
 });
 
-//link to
+//button on header that takes the user top the dashboard page
 dashboardButton.addEventListener('click', async () => {
     //const userID = await  getUserID(currentUser);
     // alert(userID);
@@ -37,8 +37,10 @@ dashboardButton.addEventListener('click', async () => {
     
  });
 
+ //button on header that takes use to the homepage
  homeButton.addEventListener('click', async () => {
 
+    //testing if there is an active loggin
     const response = await fetch('/api/users/userSearch');
 
     console.log(response);
@@ -58,6 +60,7 @@ dashboardButton.addEventListener('click', async () => {
     }
  });
 
+ //button on header that logs the user out
  if(logoutButton !== null){
 
 
@@ -68,6 +71,7 @@ dashboardButton.addEventListener('click', async () => {
      });
  }
 
+ //button on header that logs the user in
  if(loginButton !== null){
 
     loginButton.addEventListener('click', async () =>{

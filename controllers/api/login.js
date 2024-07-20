@@ -2,7 +2,7 @@
     const router = require('express').Router();
     const {User} = require('../../models');
     
-    
+    //login a user from the main page
     router.post('/', async(req, res)=>{
         try{
     
@@ -28,6 +28,7 @@
     
     });
 
+    //login a user from the login screen
     router.post('/login', async (req, res) =>{
 
         try{

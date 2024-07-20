@@ -4,6 +4,7 @@
     const postText = document.getElementById('exampleFormControlTextarea1');
     const postTitle = document.getElementById('new-post-title');
 
+    //save a new post
     savePostBtn.addEventListener('click', async ()=>{
 
         try{
@@ -38,6 +39,7 @@
         }
     });
 
+    //close the new post window
     closePostBtn.addEventListener('click', ()=>{
 
         const location = window.location.href;

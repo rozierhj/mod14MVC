@@ -7,6 +7,7 @@
     const deleteComment = document.getElementsByClassName('delete-comment');
     const editComment = document.getElementsByClassName('edit-comment');
 
+    //test if post element exists to test if post is open
 if(closeBtnDab !== null){
 
     //close the view of the selected post
@@ -111,8 +112,10 @@ if(closeBtnDab !== null){
 
     if(deleteComment !== null){
 
+        //get all of the delete comment buttons for events
         Array.from(deleteComment).forEach(deleteComBtn =>{
 
+            //delete the comment
             deleteComBtn.addEventListener('click', async (event) =>{
 
                 try{
@@ -140,11 +143,13 @@ if(closeBtnDab !== null){
                     const postUser = pageData.selectPost.user_name;
                     const currentUser = pageData.currentUser;
 
+                    //get posts by user logged in
                     if(postUser === currentUser){
                     await fetch(`/homepage/myPost/${postID}`);
                     window.location.href = `/homepage/myPost/${postID}`;
                     }
                     else{
+                        //get all of the other posts
                     await fetch(`/homepage/post/${postID}`);
                     window.location.href = `/homepage/post/${postID}`;
                     }
@@ -162,9 +167,10 @@ if(closeBtnDab !== null){
     }
 
     if(editComment !== null){
-
+//get all of the comments to edit
         Array.from(editComment).forEach(editComBtn =>{
 
+            //get the comments
             editComBtn.addEventListener('click', async (event) =>{
 
                 try{

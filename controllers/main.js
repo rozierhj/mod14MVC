@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {Post, Comment} = require('../models');
 const {Op} = require('sequelize');
 
-
+//main page
 router.get('/',async (req, res) => {
 
 
@@ -31,6 +31,7 @@ router.get('/',async (req, res) => {
 
 });
 
+//login new user page
 router.get('/login', async (req, res) =>{
 
     try{
@@ -51,6 +52,7 @@ router.get('/login', async (req, res) =>{
 
 });
 
+//create new user page
 router.get('/createAccount', async (req, res) =>{
 
     try{

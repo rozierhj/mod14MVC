@@ -8,7 +8,7 @@ const saveEditButton = document.getElementsByClassName('save-edit-comment');
 
 if(newComment!==null){
 
-
+//create a new comment
     newComment.addEventListener('click', async () =>{
         
         
@@ -42,7 +42,7 @@ if(newComment!==null){
         }
     
     });
-
+//testing if comment element exists
     if(saveNewComment !== null){
 
         saveNewComment.addEventListener('click', async (event) => {
@@ -151,9 +151,10 @@ if(newComment!==null){
 
 }
 
-
+//testing if comment element exists
 if(closeEditButton !== null){
 
+//close edit window
     console.log(closeEditButton);
     const closeBTN = closeEditButton[0].id;
     const saveBTN = saveEditButton[0].id;
@@ -190,6 +191,7 @@ if(closeEditButton !== null){
 
     });
 
+    //save the comment
     savingCommentBtn.addEventListener('click', async() =>{
 
         const commentValue = savingCommentBtn.id;

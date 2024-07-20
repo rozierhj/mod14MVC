@@ -10,6 +10,7 @@ const logoutBtn = document.getElementById('logout-button');
 const closeSignIn = document.getElementById('close-sign-in');
 const closeCreateAccount = document.getElementById('close-sign-up');
 
+//button user clicks to be taken to create account menu
 if(createAccount !== null){
 
 
@@ -29,10 +30,12 @@ if(createAccount !== null){
 
 }
 
+//button user clicks to create their account
 if(createMyAccount !== null){
 
     createMyAccount.addEventListener('click', async () =>{
 
+        //checking if the username already exists
         const userResponse = await fetch(`/api/users/check/${createUsername.value}`);
         const userData = await userResponse.json();
 
@@ -41,6 +44,7 @@ if(createMyAccount !== null){
             errorMessage.innerHTML = 'That username name already exists';
         }
         else{
+            //create user account
             const response = await fetch('/api/users/add',{
                 method: 'POST',
                 headers:{
@@ -67,6 +71,7 @@ if(createMyAccount !== null){
 
 }
 
+//sign user in
 if(signUserInBtn !== null){
 
     signUserInBtn.addEventListener('click', async () =>{
@@ -106,6 +111,7 @@ if(signUserInBtn !== null){
     }); 
 }
 
+//log user out
 if(logoutBtn !== null){
 
     logoutBtn.addEventListener('click', async ()=>{
@@ -129,6 +135,7 @@ if(logoutBtn !== null){
 
 }
 
+//close the signin window
 if(closeSignIn !== null){
 
     closeSignIn.addEventListener('click', async () =>{
@@ -140,6 +147,7 @@ if(closeSignIn !== null){
 
 }
 
+//close the create account window
 if(closeCreateAccount !== null){
     closeCreateAccount.addEventListener('click', async () =>{
 

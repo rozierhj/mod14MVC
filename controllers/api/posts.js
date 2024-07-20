@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Post, Comment} = require('../../models');
 
+//create a post
 router.post('/add', async(req, res)=>{
     try{
         const newPost = await Post.create({
@@ -18,7 +19,7 @@ router.post('/add', async(req, res)=>{
     }
 
 });
-
+//edit a post
 router.put('/edit/:id', async(req, res)=>{
 
     try{
@@ -36,7 +37,7 @@ router.put('/edit/:id', async(req, res)=>{
     }
 
 });
-
+//delete a post
 router.delete('/delete/:id', async(req, res)=>{
 
     try{
@@ -56,7 +57,7 @@ router.delete('/delete/:id', async(req, res)=>{
     }
 
 });
-
+//get the post id of a comment
 router.get('/comments/:post_id',async (req, res) => {
 
     console.log('y');
@@ -90,7 +91,7 @@ router.get('/comments/:post_id',async (req, res) => {
     }
 
 });
-
+//get a post
 router.get('/:id', async(req, res) =>{
 
     try{

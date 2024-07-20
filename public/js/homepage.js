@@ -34,7 +34,7 @@ Array.from(homePostHeader).forEach(postHeader => {
         const postID = homeSelectedPost.id;
 
         try{
-
+            //get the post
             const response = await fetch(`/api/post/${postID}`);
 
             const data = await response.json();
