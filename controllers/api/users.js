@@ -2,28 +2,31 @@ const router = require('express').Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
-// router.get('/:user_name', async(req, res) =>{
+//test to see if the username that is trying to be added already exist
+router.get('/check/:user_name', async(req, res) =>{
   
-//     try{
-//         const user = await User.findOne({
-//             attributes:['id','user_name','password'],
-//             where:{
-//                 user_name: req.params.user_name
-//             }
-//         });
+    try{
+        const user = await User.findOne({
+            attributes:['id','user_name','password'],
+            where:{
+                user_name: req.params.user_name
+            }
+        });
 
-        
-//        // const users = allUsers.map(user => user.get({plain: true}));
-       
-//        const userData = user.get({plain:true});
-//         res.status(200).json(userData);
+        if(!user){
+            res.status(200).json({hasUser:false});
+        }
+        else{
+            res.status(200).json({hasUser:true});
+        }
 
-//     }catch(err){
-//         res.status(500).json(err);
-//     }
+    }catch(err){
+        res.status(500).json(err);
+    }
 
-// });
+});
 
+//add a new user
 router.post('/add', async(req, res)=>{
 
     console.log(req.body.user_name);
@@ -49,6 +52,7 @@ router.post('/add', async(req, res)=>{
 
 });
 
+//login a user
 router.post('/login', async (req, res) =>{
 
     try{
@@ -93,6 +97,7 @@ router.post('/login', async (req, res) =>{
 
 });
 
+//logout a user
 router.post('/logout', async (req, res) =>{
 
     if(req.session.user_name !== '' && req.session.user_name !== null && req.session.user_name !== undefined){
@@ -106,6 +111,7 @@ router.post('/logout', async (req, res) =>{
 
 });
 
+//test to see if there is an active session user
 router.get('/userSearch', async (req, res)=>{
 
 

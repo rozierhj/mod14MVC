@@ -16,9 +16,9 @@ if(createAccount !== null){
     createAccount.addEventListener('click', async () =>{
     
         try{
-            await fetch('/homepage/createAccount');
+            await fetch('/createAccount');
         
-            window.location.href = '/homepage/createAccount';
+            window.location.href = '/createAccount';
     
         }
         catch(err){
@@ -32,25 +32,36 @@ if(createAccount !== null){
 if(createMyAccount !== null){
 
     createMyAccount.addEventListener('click', async () =>{
-        const response = await fetch('/api/users/add',{
-            method: 'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
+
+        const userResponse = await fetch(`/api/users/check/${createUsername.value}`);
+        const userData = await userResponse.json();
+
+        if(userData.hasUser === true){
+            let errorMessage = document.getElementById('error-message');
+            errorMessage.innerHTML = 'That username name already exists';
+        }
+        else{
+            const response = await fetch('/api/users/add',{
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                
+                body: JSON.stringify({
+                    user_name: createUsername.value,
+                    password: createPassword.value,
+                })
+            });
             
-            body: JSON.stringify({
-                user_name: createUsername.value,
-                password: createPassword.value,
-            })
-        });
-        
-        const data = await response.json();
+            const data = await response.json();
+    
+            console.log(data);
+    
+           await fetch('/dashboard');
+    
+           window.location.href = '/dashboard';
+        }
 
-        console.log(data);
-
-       await fetch('/dashboard');
-
-       window.location.href = '/dashboard';
 
     });
 
@@ -96,7 +107,6 @@ if(signUserInBtn !== null){
     }); 
 }
 
-
 if(logoutBtn !== null){
 
     logoutBtn.addEventListener('click', async ()=>{
@@ -124,18 +134,8 @@ if(closeSignIn !== null){
 
     closeSignIn.addEventListener('click', async () =>{
 
-        const response = await fetch('/api/users/userSearch');
-
-        const data = await response.json();
-
-        if(data.loggedIn === false){
-            await fetch('/');
-            window.location.href = '/';
-        }
-        else{
-            await fetch('/homepage');
-            window.location.href = '/homepage';
-        }
+        await fetch('/');
+        window.location.href = '/';
 
     })
 
@@ -144,14 +144,8 @@ if(closeSignIn !== null){
 if(closeCreateAccount !== null){
     closeCreateAccount.addEventListener('click', async () =>{
 
-        if(data.loggedIn === false){
-            await fetch('/');
-            window.location.href = '/';
-        }
-        else{
-            await fetch('/homepage');
-            window.location.href = '/homepage';
-        }
+        await fetch('/');
+        window.location.href = '/';
 
     });
 }

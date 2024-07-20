@@ -18,11 +18,12 @@ dashboardButton.addEventListener('click', async () => {
 
     }
     else{
-        await fetch('/homepage/login');
-        window.location.href = '/homepage/login';
+        await fetch('/login');
+        window.location.href = '/login';
     }
     
  });
+
  homeButton.addEventListener('click', async () => {
 
     const response = await fetch('/api/users/userSearch');
@@ -39,8 +40,8 @@ dashboardButton.addEventListener('click', async () => {
 
     }
     else{
-        await fetch('/homepage/login');
-        window.location.href = '/homepage/login';
+        await fetch('/login');
+        window.location.href = '/login';
     }
  });
 
@@ -53,6 +54,7 @@ dashboardButton.addEventListener('click', async () => {
          window.location.href = '/';
      });
  }
+ 
  if(loginButton !== null){
 
     loginButton.addEventListener('click', async () =>{

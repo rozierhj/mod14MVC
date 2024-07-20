@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {Comment, Post} = require('../../models');
 
+//add a comment to a post
 router.post('/add', async(req, res)=>{
 
     try{
@@ -29,6 +30,7 @@ router.post('/add', async(req, res)=>{
 
 });
 
+//edit a comment on a post
 router.put('/edit/:id', async(req, res)=>{
 
 
@@ -49,6 +51,7 @@ router.put('/edit/:id', async(req, res)=>{
 
 });
 
+//get one of the users comments
 router.get('/:user_name/get/:id', async(req, res)=>{
 
 
@@ -67,6 +70,7 @@ router.get('/:user_name/get/:id', async(req, res)=>{
 
 });
 
+//delete a comment
 router.delete('/delete/:id', async(req, res)=>{
 
     try{

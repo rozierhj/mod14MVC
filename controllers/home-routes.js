@@ -3,6 +3,8 @@ const {Post, Comment} = require('../models');
 const {Op} = require('sequelize');
 
 
+
+
 router.get('/',async (req, res) => {
 
     const currentUser = req.session.user_name;
@@ -18,10 +20,10 @@ router.get('/',async (req, res) => {
 
         
         if(currentUser !== null && currentUser !== undefined && currentUser !== ''){
-            res.render('homepage',{posts, showContent:false, noUser:false, currentUser});
+            res.render('homepage',{posts, showContent:false, noUser:false, loginUser:true, currentUser, isFirstPage:false});
         }
         else{
-            res.render('homepage',{posts, showContent:false, noUser:true, isFirstPage:true});
+            res.render('homepage',{posts, showContent:false, noUser:true, loginUser:true, isFirstPage:false});
         }
 
     }catch(err){
@@ -29,6 +31,8 @@ router.get('/',async (req, res) => {
     }
 
 });
+
+
 
 router.get('/homepage',async (req, res) => {
 
@@ -57,6 +61,8 @@ router.get('/homepage',async (req, res) => {
     }
 
 });
+
+/*
 
 router.get('/login', async (req, res) =>{
 
@@ -89,7 +95,7 @@ router.get('/createAccount', async (req, res) =>{
 
         posts.sort((a, b) => b.id - a.id);
 
-        res.render('homepage',{posts, showContent:false, createUser:true});
+        res.render('homepage',{posts, showContent:false, createUser:true, isFirstPage:true});
 
     }catch(err){
         res.status(500).json(err);
@@ -97,6 +103,8 @@ router.get('/createAccount', async (req, res) =>{
 
 
 });
+
+*/
 
 
 router.get('/newPost',async (req, res) => {

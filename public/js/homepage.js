@@ -44,8 +44,8 @@ Array.from(homePostHeader).forEach(postHeader => {
         
             if(!currentUser){
 
-                await fetch('/homepage/login');
-                window.location.href = '/homepage/login';
+                await fetch('/login');
+                window.location.href = '/login';
 
             }
 
