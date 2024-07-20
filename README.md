@@ -24,10 +24,6 @@
 
     When the user first opens the page they can see all posts on the site. If the user clicks on a post to view the comments or clicks on another page in the menu, then they are prompted to sign in or create an account if they have not. After they sign in or create an account they are taken to the dashboard page. The dashboard displays all of the users posts. The user can create, read, edit or delete their posts from the dashboard.
     On the homepage the user can read every post on the website. They can also create, read, edit on delete comments on each of the posts. When the user logs off the site the session is destroyed.
-  
-
-  Webpage Design
-    #### [link to the website](https://mod14mvc-stbk.onrender.com/)
 
   ## License
 
