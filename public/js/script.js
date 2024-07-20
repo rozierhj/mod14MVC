@@ -3,6 +3,19 @@ const homeButton = document.getElementById('home-button');
 const loginButton = document.getElementById('login-button');
 const logoutButton = document.getElementById('logout-button');
 
+//test to move user to homepage if they are already signed in
+document.addEventListener('DOMContentLoaded', async ()=>{
+
+    const url = window.location.pathname;
+    const response = await fetch('/api/users/userSearch');
+    const data = await response.json();
+    if(data.loggedIn === true && url.includes('homepage') !== true && url.includes('dashboard') !== true){
+        await fetch('/homepage');
+        window.location.href = '/homepage';
+    }
+
+});
+
 //link to
 dashboardButton.addEventListener('click', async () => {
     //const userID = await  getUserID(currentUser);
@@ -54,7 +67,7 @@ dashboardButton.addEventListener('click', async () => {
          window.location.href = '/';
      });
  }
- 
+
  if(loginButton !== null){
 
     loginButton.addEventListener('click', async () =>{

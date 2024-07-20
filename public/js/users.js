@@ -97,7 +97,6 @@ if(signUserInBtn !== null){
             const currentUser = data.session.user_name;
             const sessionLive = data.session.loggedIn;
     
-            alert(`${currentUser} is logged in`);
     
            await fetch('/dashboard');
     
